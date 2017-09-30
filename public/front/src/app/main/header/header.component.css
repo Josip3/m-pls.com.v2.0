@@ -1,0 +1,49 @@
+.container {
+  height: 15vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+  list-style: none;
+  margin: auto;
+  width: -moz-max-content;
+  width: 50vw;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu li {
+  float: left;
+  width: auto;
+  margin-left: 1.5vw;
+
+}
+
+.active {
+  color: red;
+}
+
+.menu li a {
+  text-decoration: none;
+}
+
+.menu li ul {
+  list-style: none;
+  width: 10vw;
+  position: absolute;
+  background: rgba(208, 208, 208, 0.5);
+}
+
+.menu li ul li {
+  display: block;
+  width: 100%;
+  margin: 0;
+  margin-top: 1vh;
+  margin-left: 1vw;
+}
+
+.menu li ul li a {
+  text-decoration: none;
+}
