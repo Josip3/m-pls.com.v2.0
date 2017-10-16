@@ -8,6 +8,7 @@ import {HeaderComponent} from './main/header/header.component';
 import {FooterComponent} from './main/footer/footer.component';
 import {HomeComponent} from './main/home/home.component';
 import { GalleryContainerComponent } from './main/home/gallery-container/gallery-container.component';
+import { ChatHelperComponent } from './sourse/chat-helper/chat-helper.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     FooterComponent,
     HomeComponent,
     GalleryContainerComponent,
+    ChatHelperComponent,
   ],
   imports: [
     BrowserModule,

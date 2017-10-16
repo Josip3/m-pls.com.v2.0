@@ -1,0 +1,20 @@
+.container {
+  width: 20vw;
+  height: 40vh;
+  background: red;
+  position: fixed;
+  bottom: 0vh;
+}
+
+.container_messages {
+  width: 20vw;
+  height: 30vh;
+}
+
+.container_messages_message {
+  width: 20vw;
+}
+textarea{
+  width: 20vw;
+  height: 10vh;
+}

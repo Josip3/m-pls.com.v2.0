@@ -6,7 +6,7 @@
 	<groupId>com.mpls.new</groupId>
 	<artifactId>mpls-new</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>POM</packaging>
 
 	<name>mpls-new</name>
 	<description>Demo project for Spring Boot</description>
