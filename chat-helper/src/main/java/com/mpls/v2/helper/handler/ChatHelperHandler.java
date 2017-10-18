@@ -3,8 +3,10 @@ package com.mpls.v2.helper.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpls.v2.helper.model.ChatRoom;
 import com.mpls.v2.helper.model.Message;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import static java.util.stream.Collectors.toList;
  * Created by danul on 16.10.2017.
  */
 @Component
+@EnableScheduling
+@EnableWebSocket
 public class ChatHelperHandler implements WebSocketHandler {
 
     private List<WebSocketSession> webSocketSessions = new ArrayList<>();

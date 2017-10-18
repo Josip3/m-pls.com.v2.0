@@ -1,4 +1,4 @@
-//package com.mpls.v2.helper new.persistence;
+//package com.mpls.v2 new.web;
 //
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@
 //
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-//public class PersistenceApplicationTests {
+//public class WebApplicationTests {
 //
 //	@Test
 //	public void contextLoads() {
