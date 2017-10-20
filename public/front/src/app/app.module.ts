@@ -13,14 +13,16 @@ import {LoginComponent} from "./login/login.component";
 import {Http, HttpModule, RequestOptions, XHRBackend} from "@angular/http";
 import {HttpClient} from "../environments/service/http-client";
 import {CookieService} from "angular2-cookie/core";
+import {NewsComponent} from './main/news/news.component';
 
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [
     {
       path: '', component: HomeComponent,
-    },
 
+    },
+    {path: 'news', component: NewsComponent}
   ]
   },
   // {path: '', component: HomeComponent},
@@ -36,12 +38,13 @@ const routes: Routes = [
     HomeComponent,
     GalleryContainerComponent,
     ChatHelperComponent,
-    LoginComponent
+    LoginComponent,
+    NewsComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{useHash:true})
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [CookieService, {
     provide: Http,

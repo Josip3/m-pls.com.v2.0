@@ -1,0 +1,12 @@
+<form #testForm>
+
+  <input type="file" name="multipartFile">
+  <button (click)="addFile(testForm)">upload</button>
+
+</form>
+<div>
+  <div *ngFor="let one of path">
+    <img src="{{url}}/restful/google-drive/download/{{one}}">
+    <a href="#" (click)="delete(one)">X</a>
+  </div>
+</div>

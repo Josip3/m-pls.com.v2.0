@@ -54,7 +54,7 @@ export class HttpClient extends Http {
       options.headers = new Headers();
     }
     if ((this._cookieService.get(this.tokenName) != null) && (this._cookieService.get(this.tokenName) != "")) {
-      // alert((this._cookieService.get(this.tokenName) != null) && (this._cookieService.get(this.tokenName) != ""));
+
       if (AppComponent.userDetailsService.checkAuth()) {
         AppComponent.userDetailsService.updateTokenParseInLocalStorage();
       }
@@ -65,23 +65,26 @@ export class HttpClient extends Http {
         if (!options.headers.has("Authorization")) {
           options.headers.delete('Authorization');
           options.headers.append('Authorization', 'Bearer ' + this._cookieService.get(this.tokenName));
+          options.headers.append('Accept', 'application/json');
         }
       }
-      options.headers.append('Accept', 'application/json');
     } else {
       if (options.headers.has("NotAuthorization")) {
         options.headers.delete('NotAuthorization');
       } else {
-        options.headers.append('Authorization', 'Basic  Y2xpZW50YXBwOjEyMzQ1Ng==');
-      }
-      if (!options.headers.has("Content-Type")) {
-        options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        options.headers.append('Accept', 'application/json');
+        if (options.headers.has("Multipart")) {
+          options.headers.delete("Multipart");
+        } else {
+          options.headers.append('Authorization', 'Basic  Y2xpZW50YXBwOjEyMzQ1Ng==');
+          if (!options.headers.has("Content-Type")) {
+            options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+          }
+          options.headers.append('Accept', 'application/json');
+        }
       }
     }
     return options;
   }
-
   intercept(observable: Observable<Response>): Observable<Response> {
     return observable.catch((err, source) => {
       if (err.status == 401) {

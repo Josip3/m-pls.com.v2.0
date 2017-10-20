@@ -1,5 +1,6 @@
 package com.mpls.v2;
 
+import com.mpls.v2.service.utils.FileBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,11 @@ public class ServiceApplication {
     @Bean
     public RequestContextListener requestContextListener() {
         return new RequestContextListener();
+    }
+
+    @Bean
+    public FileBuilder fileBuilder() {
+        return new FileBuilder();
     }
 
     @Bean
