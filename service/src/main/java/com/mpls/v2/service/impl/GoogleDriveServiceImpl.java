@@ -248,8 +248,17 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
         FileContent mediaContent = new FileContent(null, content);
 
         try {
-            driveService.files().create(fileMetadata, mediaContent).setFields("id").execute();
+            returnFileName = driveService.files().create(fileMetadata, mediaContent).setFields("id").execute().getId();
             content.delete();
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
+            System.err.println("id: " + returnFileName);
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
+            System.err.println("-------------------------");
             return returnFileName;
         } catch (IOException e) {
             LOGGER.error("Could not upload " + fileName, e);

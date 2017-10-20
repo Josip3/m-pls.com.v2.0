@@ -52,7 +52,7 @@ public class Test {
     }
     @RequestMapping("/getAllImaget")
     public List<String> getAllImg(){
-        return this.googleDriveService.getAll().stream().map(File::getName).collect(toList());
+        return this.googleDriveService.getAll().stream().map(File::getId).collect(toList());
     }
 
 }

@@ -45,15 +45,8 @@ public class GoogleDriveController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable String id) {
-        List<File> file = driveService.getAll();
-        String tempId = "";
-        for (File file1 : file) {
-            System.err.println("bool 1 :|" + file1.getName() + "|" + id + "|= " + file1.getName().contains(id));
-            if (file1.getName().contains(id)) {
-                tempId = file1.getId();
-            }
-        }
-        return driveService.delete(tempId);
+
+        return driveService.delete(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -71,23 +64,23 @@ public class GoogleDriveController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "download/{id}", method = RequestMethod.GET)
     public void download(@PathVariable String id, HttpServletResponse response) {
-        System.err.println("---------------------------------");
-        System.err.println("---------------------------------");
-        System.err.println("---------------------------------");
-        List<File> file = driveService.getAll();
-        String tempId = "";
-        for (File file1 : file) {
-            System.err.println("bool 1 :|" + file1.getName() + "|" + id + "|= " + file1.getName().contains(id));
-            if (file1.getName().contains(id)) {
-                tempId = file1.getId();
-            }
-        }
+//        System.err.println("---------------------------------");
+//        System.err.println("---------------------------------");
+//        System.err.println("---------------------------------");
+//        List<File> file = driveService.getAll();
+//        String tempId = "";
+//        for (File file1 : file) {
+//            System.err.println("bool 1 :|" + file1.getName() + "|" + id + "|= " + file1.getName().contains(id));
+//            if (file1.getName().contains(id)) {
+//                tempId = file1.getId();
+//            }
+//        }
+//
+//        System.err.println("---------------------------------");
+//        System.err.println("---------------------------------");
+//        System.err.println("---------------------------------");
 
-        System.err.println("---------------------------------");
-        System.err.println("---------------------------------");
-        System.err.println("---------------------------------");
-
-        driveService.download(tempId, response);
+        driveService.download(id, response);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
