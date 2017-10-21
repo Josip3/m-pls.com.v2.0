@@ -14,15 +14,17 @@ public class WebSocketSessionWrapper {
         return name;
     }
 
-    public void setName(String name) {
+    public WebSocketSessionWrapper setName(String name) {
         this.name = name;
+        return this;
     }
 
     public WebSocketSession getWebSocketSession() {
         return webSocketSession;
     }
 
-    public void setWebSocketSession(WebSocketSession webSocketSession) {
+    public WebSocketSessionWrapper setWebSocketSession(WebSocketSession webSocketSession) {
         this.webSocketSession = webSocketSession;
+        return this;
     }
 }

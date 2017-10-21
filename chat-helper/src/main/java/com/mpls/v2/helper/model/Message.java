@@ -1,11 +1,13 @@
 package com.mpls.v2.helper.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by danul on 16.10.2017.
  */
 public class Message {
 
-    private Boolean isCallCenter;
+    private Boolean CallCenter;
     private String text;
     private String name;
     private Integer chatRoomId;
@@ -15,16 +17,17 @@ public class Message {
         return create;
     }
 
-    public void setCreate(Boolean create) {
+    public Message setCreate(Boolean create) {
         this.create = create;
+    return this;
     }
-
+    @JsonProperty("CallCenter")
     public Boolean getCallCenter() {
-        return isCallCenter;
+        return CallCenter;
     }
 
     public Message setCallCenter(Boolean callCenter) {
-        isCallCenter = callCenter;
+        CallCenter = callCenter;
         return this;
     }
 

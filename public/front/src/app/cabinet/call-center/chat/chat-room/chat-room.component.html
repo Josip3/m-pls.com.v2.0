@@ -1,3 +1,7 @@
-<p>
-  chat-room works!
+<p *ngFor="let one of chatRoom.messages">
+  {{one.text}}
+  {{one.chatRoomId}}
+  {{one.name}}
+  {{one.create}}
+  {{one.CallCenter}}
 </p>

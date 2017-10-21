@@ -14,6 +14,7 @@ export class ChatHelperComponent implements OnInit {
   @ViewChild('containerId') containerIdVC: ElementRef;
   connect: boolean = false;
   message: Message[] = [];
+  chatRoomId: number;
 
   constructor() {
   }
@@ -32,14 +33,17 @@ export class ChatHelperComponent implements OnInit {
     if (this.connect)
       this.disconnector();
     else {
-
-      this.containerIdVC.nativeElement.style.bottom = "0";
       this.ws = new $WebSocket(Url.ws);
+      this.containerIdVC.nativeElement.style.bottom = "0";
       this.ws.getDataStream().subscribe(
         (msg) => {
           console.log("next", msg.data);
-          this.message.push(JSON.parse(msg.data));
+          let mes: Message = JSON.parse(msg.data);
+          console.log(msg.data);
+          if (mes.create)
+            this.message.push(mes);
           // this.ws.close(false);
+          this.chatRoomId = mes.chatRoomId;
           this.connect = true;
         },
         (msg) => {
@@ -50,6 +54,17 @@ export class ChatHelperComponent implements OnInit {
           this.connect = true;
         }
       );
+      this.ws.send(JSON.stringify(new Message("delete", "admin", false, false, 1))).subscribe(
+        (msg) => {
+          console.log("next", msg.data);
+        },
+        (msg) => {
+          console.log("error", msg);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
     }
 
   }
@@ -57,7 +72,7 @@ export class ChatHelperComponent implements OnInit {
   send(message: HTMLTextAreaElement) {
     console.log(message.value);
     event.preventDefault();
-    this.ws.send(JSON.stringify(new Message(message.value))).subscribe(
+    this.ws.send(JSON.stringify(new Message(message.value, "", false, true, this.chatRoomId))).subscribe(
       (msg) => {
         console.log("next", msg.data);
         message.value = "";
