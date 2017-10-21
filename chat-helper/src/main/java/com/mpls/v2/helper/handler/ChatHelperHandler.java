@@ -3,6 +3,7 @@ package com.mpls.v2.helper.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpls.v2.helper.model.ChatRoom;
 import com.mpls.v2.helper.model.Message;
+import com.mpls.v2.helper.model.WebSocketSessionWrapper;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
@@ -23,7 +24,7 @@ import static java.util.stream.Collectors.toList;
 @EnableWebSocket
 public class ChatHelperHandler implements WebSocketHandler {
 
-    private List<WebSocketSession> webSocketSessions = new ArrayList<>();
+    private List<WebSocketSessionWrapper> webSocketSessions = new ArrayList<>();
     private List<ChatRoom> chatRooms = new ArrayList<>();
     private Integer index = 1;
 
@@ -31,16 +32,16 @@ public class ChatHelperHandler implements WebSocketHandler {
         try {
             final ObjectMapper mapper = new ObjectMapper();
             if (chatRoom.getCallCenter().size() != 0) {
-                chatRoom.getClient().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
+                chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
                 chatRoom.getCallCenter().forEach(socketSession1 -> {
                     try {
-                        socketSession1.sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
+                        socketSession1.getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 });
             } else {
-                chatRoom.getClient().sendMessage(new TextMessage(mapper.writeValueAsBytes(message.setText("Очікуйте консультанта"))));
+                chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message.setText("Очікуйте консультанта"))));
 
             }
         } catch (IOException e) {
@@ -48,11 +49,11 @@ public class ChatHelperHandler implements WebSocketHandler {
         }
     }
 
-    private List<WebSocketSession> getAllCallCenter() {
-        return webSocketSessions.stream().filter(socketSession -> ofNullable(socketSession.getPrincipal()).isPresent()).collect(toList());
+    private List<WebSocketSessionWrapper> getAllCallCenter() {
+        return webSocketSessions.stream().filter(socketSession -> ofNullable(socketSession.getName()).isPresent()).collect(toList());
     }
 
-    private ChatRoom getChatRoom(WebSocketSession session) {
+    private ChatRoom getChatRoom(WebSocketSessionWrapper session) {
         if (chatRooms.stream().filter(chatRoom -> chatRoom.getClient().equals(session)).findFirst().isPresent())
             return chatRooms.stream().filter(chatRoom -> chatRoom.getClient().equals(session)).findFirst().get();
         else {
@@ -92,6 +93,7 @@ public class ChatHelperHandler implements WebSocketHandler {
                 chatRooms.add(chatRoom);
             }
         }
+
 
     }
 
