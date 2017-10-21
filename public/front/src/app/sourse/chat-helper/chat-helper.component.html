@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container" #containerId>
+  <div class="container_header" (click)="connector()">
+    <p>звязатись з оператором</p>
+  </div>
   <div class="container_messages">
     <div class="container_messages_message" *ngFor="let one of message">
       <p>{{one.text}}</p>

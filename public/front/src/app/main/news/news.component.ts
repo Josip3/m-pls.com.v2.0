@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NewsService} from "./news.service";
 import {Url} from "../../../environments/config/url";
 
@@ -12,6 +12,13 @@ export class NewsComponent implements OnInit {
 
   path: string[] = [];
   url: string;
+  zoom: number = 1;
+
+
+
+
+  lat: number = 49.8390024;
+  lng: number = 24.0233644;
 
   constructor(private _newsService: NewsService) {
     this.url = Url.url;
@@ -22,6 +29,7 @@ export class NewsComponent implements OnInit {
     });
 
   }
+
 
   delete(id: string) {
     event.preventDefault();

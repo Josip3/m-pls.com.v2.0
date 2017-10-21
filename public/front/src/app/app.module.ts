@@ -14,6 +14,8 @@ import {Http, HttpModule, RequestOptions, XHRBackend} from "@angular/http";
 import {HttpClient} from "../environments/service/http-client";
 import {CookieService} from "angular2-cookie/core";
 import {NewsComponent} from './main/news/news.component';
+import {AgmCoreModule} from "@agm/core";
+import {AgmSnazzyInfoWindowModule} from "@agm/snazzy-info-window";
 
 const routes: Routes = [
   {
@@ -44,7 +46,11 @@ const routes: Routes = [
   imports: [
     HttpModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes, {useHash: true}),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDio2qZDpD9ifaAlAqsk-1Gr8zi0fblqY8'
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [CookieService, {
     provide: Http,

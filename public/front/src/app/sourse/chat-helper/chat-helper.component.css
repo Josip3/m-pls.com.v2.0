@@ -1,11 +1,17 @@
 .container {
   width: 20vw;
-  height: 40vh;
+  height: 45vh;
   background: red;
   position: fixed;
-  bottom: 0vh;
+  bottom: -40vh;
 }
-
+.container_header{
+  width: 20vw;
+  height: 5vh;
+}
+.container_header p{
+  cursor: pointer;
+}
 .container_messages {
   width: 20vw;
   height: 30vh;
