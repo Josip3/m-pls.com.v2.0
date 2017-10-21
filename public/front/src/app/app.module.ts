@@ -16,6 +16,11 @@ import {CookieService} from "angular2-cookie/core";
 import {NewsComponent} from './main/news/news.component';
 import {AgmCoreModule} from "@agm/core";
 import {AgmSnazzyInfoWindowModule} from "@agm/snazzy-info-window";
+import { CabinetComponent } from './cabinet/cabinet.component';
+import { CallCenterComponent } from './cabinet/call-center/call-center.component';
+import { ChatComponent } from './cabinet/call-center/chat/chat.component';
+import { ChatRoomComponent } from './cabinet/call-center/chat/chat-room/chat-room.component';
+import { OneRoomComponent } from './cabinet/call-center/chat/chat-room/one-room/one-room.component';
 
 const routes: Routes = [
   {
@@ -29,6 +34,15 @@ const routes: Routes = [
   },
   // {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'cabinet', component: CabinetComponent, children:[
+    {path: 'call-center',component:CallCenterComponent,children:[
+      {path: 'chat', component:ChatComponent,children:[
+        {path:'chat-room',component:ChatRoomComponent,children:[
+          {path:':id',component:OneRoomComponent},
+        ]},
+      ]},
+    ]},
+  ]},
 ];
 
 @NgModule({
@@ -41,7 +55,12 @@ const routes: Routes = [
     GalleryContainerComponent,
     ChatHelperComponent,
     LoginComponent,
-    NewsComponent
+    NewsComponent,
+    CabinetComponent,
+    CallCenterComponent,
+    ChatComponent,
+    ChatRoomComponent,
+    OneRoomComponent
   ],
   imports: [
     HttpModule,

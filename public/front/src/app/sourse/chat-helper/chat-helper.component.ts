@@ -13,6 +13,7 @@ export class ChatHelperComponent implements OnInit {
   ws: $WebSocket;
   @ViewChild('containerId') containerIdVC: ElementRef;
   connect: boolean = false;
+  message: Message[] = [];
 
   constructor() {
   }
@@ -52,8 +53,6 @@ export class ChatHelperComponent implements OnInit {
     }
 
   }
-
-  message: Message[] = [];
 
   send(message: HTMLTextAreaElement) {
     console.log(message.value);
