@@ -1,7 +1,5 @@
 package com.mpls.v2.helper.model;
 
-import org.springframework.web.socket.WebSocketSession;
-
 import java.util.List;
 
 /**
@@ -10,8 +8,8 @@ import java.util.List;
 public class ChatRoom {
     private Integer id;
     private List<Message> messages;
-    private List<WebSocketSession> callCenter;
-    private WebSocketSession client;
+    private List<WebSocketSessionWrapper> callCenter;
+    private WebSocketSessionWrapper client;
     private Boolean active;
 
     public Integer getId() {
@@ -23,20 +21,20 @@ public class ChatRoom {
         return this;
     }
 
-    public List<WebSocketSession> getCallCenter() {
+    public List<WebSocketSessionWrapper> getCallCenter() {
         return callCenter;
     }
 
-    public ChatRoom setCallCenter(List<WebSocketSession> callCenter) {
+    public ChatRoom setCallCenter(List<WebSocketSessionWrapper> callCenter) {
         this.callCenter = callCenter;
         return this;
     }
 
-    public WebSocketSession getClient() {
+    public WebSocketSessionWrapper getClient() {
         return client;
     }
 
-    public ChatRoom setClient(WebSocketSession client) {
+    public ChatRoom setClient(WebSocketSessionWrapper client) {
         this.client = client;
         return this;
     }

@@ -9,7 +9,15 @@ public class Message {
     private String text;
     private String name;
     private Integer chatRoomId;
+    private Boolean create;
 
+    public Boolean getCreate() {
+        return create;
+    }
+
+    public void setCreate(Boolean create) {
+        this.create = create;
+    }
 
     public Boolean getCallCenter() {
         return isCallCenter;
