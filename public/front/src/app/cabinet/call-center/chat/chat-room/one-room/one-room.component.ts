@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Message} from "../../../../../../environments/model/message";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-one-room',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OneRoomComponent implements OnInit {
 
-  constructor() { }
+  messages:Message;
+  chatRoomId:number;
+
+  constructor(private _activatedRoute:ActivatedRoute) {
+    this._activatedRoute.params.subscribe(params=>{
+      this.chatRoomId = params["id"];
+    });
+  }
 
   ngOnInit() {
   }
