@@ -33,18 +33,21 @@ public class ChatHelperHandler implements WebSocketHandler {
     private void sendMessage(final Message message, ChatRoom chatRoom) {
         try {
             final ObjectMapper mapper = new ObjectMapper();
-            if (chatRoom.getCallCenter().size() != 0) {
-                chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
-                chatRoom.getCallCenter().forEach(socketSession1 -> {
-                    try {
-                        socketSession1.getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            } else {
-                chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message.setText("Очікуйте консультанта"))));
+            if (chatRoom.getActive()) {
 
+                if (chatRoom.getCallCenter().size() != 0) {
+                    chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
+                    chatRoom.getCallCenter().forEach(socketSession1 -> {
+                        try {
+                            socketSession1.getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } else {
+                    chatRoom.getClient().getWebSocketSession().sendMessage(new TextMessage(mapper.writeValueAsBytes(message.setText("Очікуйте консультанта"))));
+
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,8 +76,26 @@ public class ChatHelperHandler implements WebSocketHandler {
 
     }
 
-    public WebSocketSessionWrapper getWebSocketSessionWrapper(WebSocketSession socketSession) {
+    WebSocketSessionWrapper getWebSocketSessionWrapper(WebSocketSession socketSession) {
         return webSocketSessions.stream().filter(webSocketSessionWrapper -> webSocketSessionWrapper.getWebSocketSession().getId().equals(socketSession.getId())).findFirst().get();
+    }
+
+    WebSocketSessionWrapper getWebSocketSessionWrapperByName(String name) {
+        for (int i = 0; i < webSocketSessions.size(); i++) {
+            if (webSocketSessions.get(i).getName().equals(name)) {
+                return webSocketSessions.get(i).setOnline(true);
+            }
+        }
+        webSocketSessions.add(new WebSocketSessionWrapper().setName(name).setOnline(true));
+        return webSocketSessions.get(webSocketSessions.size() - 1);
+    }
+
+    public ChatRoom getChatRoom(Integer id) {
+        for (int i = 0; i < chatRooms.size(); i++) {
+            if (chatRooms.get(i).getId().equals(id))
+                return chatRooms.get(i);
+        }
+        return null;
     }
 
     @Override
@@ -94,23 +115,22 @@ public class ChatHelperHandler implements WebSocketHandler {
             System.err.println("true");
             System.err.println("chatRoom:" + chatRooms.size());
             System.err.println("--------------------------------------------------------------------------------");
-            getChatRoom(getWebSocketSessionWrapper(webSocketSession)).getMessages().add(mes);
+            getChatRoom(mes.getChatRoomId()).getMessages().add(mes);
             System.err.println("--------------------------------------------------------------------------------");
             System.err.println("--------------------------------------------------------------------------------");
-            System.err.println("length mess:" + getChatRoom(getWebSocketSessionWrapper(webSocketSession)).getMessages().size());
+            System.err.println("length mess:" + getChatRoom(mes.getChatRoomId()).getMessages().size());
             System.err.println("--------------------------------------------------------------------------------");
             System.err.println("--------------------------------------------------------------------------------");
-
-            System.err.println("webSocketMessage:" + mes.toString());
-            sendMessage(mes, getChatRoom(getWebSocketSessionWrapper(webSocketSession)));
+            sendMessage(mes, getChatRoom(mes.getChatRoomId()));
         } else {
 //            --------------------------------------------------------------------------------
             if (mes.getCallCenter()) {
                 System.err.println("--------------------------------------------------------------------------------");
                 System.err.println("mes.getCallCenter()");
                 System.err.println("--------------------------------------------------------------------------------");
-                webSocketSessions.add(new WebSocketSessionWrapper().setName(mes.getName()).setWebSocketSession(webSocketSession));
-                getAllChatRoomByCallCenter(new WebSocketSessionWrapper().setName(mes.getName()).setWebSocketSession(webSocketSession)).stream().forEach(chatRoom -> {
+
+                getWebSocketSessionWrapperByName(mes.getName()).setWebSocketSession(webSocketSession);
+                getAllChatRoomByCallCenter(getWebSocketSessionWrapperByName(mes.getName())).stream().forEach(chatRoom -> {
                     chatRoom.getMessages().stream().forEach(message -> {
                         try {
                             webSocketSession.sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
@@ -119,7 +139,7 @@ public class ChatHelperHandler implements WebSocketHandler {
                         }
                     });
                 });
-                getChatRoomsWithOutCallCenter(new WebSocketSessionWrapper().setWebSocketSession(webSocketSession).setName(mes.getName()));
+                getChatRoomsWithOutCallCenter(getWebSocketSessionWrapperByName(mes.getName()));
 
             } else {
 
@@ -178,7 +198,7 @@ public class ChatHelperHandler implements WebSocketHandler {
         for (int i = 0; i < chatRooms.size(); i++) {
 
             for (int j = 0; j < chatRooms.get(i).getCallCenter().size(); j++) {
-                if (chatRooms.get(i).getCallCenter().get(j).getName().equals(webSocketSessionWrapper.getName())) {
+                if (chatRooms.get(i).getCallCenter().get(j).getName().equals(webSocketSessionWrapper.getName()) && chatRooms.get(i).getActive()) {
                     chatRoom.add(chatRooms.get(i));
                 }
 
@@ -202,8 +222,8 @@ public class ChatHelperHandler implements WebSocketHandler {
             if (getChatRoom(getWebSocketSessionWrapper(webSocketSession)).getClient().getWebSocketSession().getId() == webSocketSession.getId()) {
                 getChatRoom(getWebSocketSessionWrapper(webSocketSession)).setActive(false);
                 System.err.println("webSocketSession:" + webSocketSession.getId());
+                getWebSocketSessionWrapper(webSocketSession).setOnline(false);
             }
-            webSocketSessions.remove(getWebSocketSessionWrapper(webSocketSession));
         }
 
     }

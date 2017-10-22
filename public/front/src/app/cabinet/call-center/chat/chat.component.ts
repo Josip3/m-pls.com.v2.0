@@ -4,6 +4,8 @@ import {$WebSocket} from "angular2-websocket/angular2-websocket";
 import {Url} from "../../../../environments/config/url";
 import {Message} from "../../../../environments/model/message";
 import {Subject} from "rxjs/Subject";
+import {ChatRoomComponent} from "./chat-room/chat-room.component";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-chat',
@@ -12,15 +14,14 @@ import {Subject} from "rxjs/Subject";
 })
 export class ChatComponent implements OnInit {
 
-  static list: ChatRoom[] = [];
   indexList: number[] = [];
-  ws: $WebSocket;
+ static ws: $WebSocket;
   message: Message[];
 
- static  _chatRoom = new Subject<ChatRoom[]>();
+  list: ChatRoom[] = [];
+  static room: ChatRoom;
+  static _chatRoom = new Subject<ChatRoom>();
   static _chatRoom$ = ChatComponent._chatRoom.asObservable();
-
-
 
 
   constructor() {
@@ -29,23 +30,27 @@ export class ChatComponent implements OnInit {
 
 
   connect() {
-    this.ws = new $WebSocket(Url.ws);
-    this.ws.getDataStream().subscribe(
+    ChatComponent.ws = new $WebSocket(Url.ws);
+    ChatComponent.ws.getDataStream().subscribe(
       (msg) => {
         console.log("next", msg.data);
         let mes: Message = JSON.parse(msg.data);
         if (this.containsChatRoom(mes.chatRoomId))
-          ChatComponent.getChatRoom(mes.chatRoomId).messages.push(mes);
+          this.getChatRoom(mes.chatRoomId).messages.push(mes);
         else {
           let chatRoom = new ChatRoom();
           chatRoom.messages.push(mes);
           chatRoom.id = mes.chatRoomId;
           this.indexList.push(mes.chatRoomId);
           chatRoom.active = true;
-          ChatComponent.list.push(chatRoom);
+          this.list.push(chatRoom);
         }
-        ChatComponent._chatRoom.next(ChatComponent.list);
-        // this.ws.close(false);
+        if(!isUndefined(ChatComponent.room))
+        if (ChatComponent.room.id == mes.chatRoomId) {
+          ChatComponent._chatRoom.next(this.getChatRoom(mes.chatRoomId));
+        }
+
+
       },
       (msg) => {
         console.log("error", msg);
@@ -57,7 +62,7 @@ export class ChatComponent implements OnInit {
     setTimeout(() => {
 
 
-      this.ws.send(JSON.stringify(new Message("", "admin", true, false, -1))).subscribe(
+      ChatComponent.ws.send(JSON.stringify(new Message("", "admin", true, false, -1))).subscribe(
         (msg) => {
           console.log("next", msg.data);
         },
@@ -76,17 +81,27 @@ export class ChatComponent implements OnInit {
   }
 
   containsChatRoom(id: number): boolean {
-    for (let i = 0; i < ChatComponent.list.length; i++) {
-      if (id == ChatComponent.list[i].id)
+    for (let i = 0; i < this.list.length; i++) {
+      if (id == this.list[i].id)
         return true;
     }
     return false;
   }
 
-  static getChatRoom(id: number): ChatRoom {
-    for (let i = 0; i < ChatComponent.list.length; i++) {
-      if (id == ChatComponent.list[i].id)
-        return ChatComponent.list[i];
+  getChatRoom(id: number): ChatRoom {
+    for (let i = 0; i < this.list.length; i++) {
+      if (id == this.list[i].id) {
+        return this.list[i];
+      }
+    }
+  }
+
+  activeChatRooom(id: number) {
+    for (let i = 0; i < this.list.length; i++) {
+      if (id == this.list[i].id) {
+        ChatComponent.room = this.list[i];
+        ChatComponent._chatRoom.next(ChatComponent.room);
+      }
     }
   }
 

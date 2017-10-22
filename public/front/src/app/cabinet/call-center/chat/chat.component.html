@@ -3,5 +3,6 @@
 </p>
 <router-outlet></router-outlet>
 <div>
-  <a *ngFor="let one of indexList" routerLink="/cabinet/call-center/chat/chat-room/{{one}}">{{one}}</a>
+  <p *ngFor="let one of indexList"><a (click)="activeChatRooom(one)" >{{one}}</a></p>
 </div>
+<app-chat-room></app-chat-room>

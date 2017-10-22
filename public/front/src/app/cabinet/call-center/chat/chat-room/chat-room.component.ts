@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ChatComponent} from "../chat.component";
 import {ChatRoom} from "../../../../../environments/model/chat-room";
 import {isUndefined} from "util";
+import {Message} from "../../../../../environments/model/message";
 
 @Component({
   selector: 'app-chat-room',
@@ -11,22 +12,33 @@ import {isUndefined} from "util";
 })
 export class ChatRoomComponent implements OnInit {
 
-  chatRoom: ChatRoom;
+  chatRoom: ChatRoom = new ChatRoom();
 
-  constructor(private route: ActivatedRoute) {
+  constructor() {
 
-    this.route.params.subscribe(params => {
-      ChatComponent._chatRoom$.subscribe(next => {
-        if (!isUndefined(ChatComponent.getChatRoom(parseInt(params["id"]))))
-          this.chatRoom = ChatComponent.getChatRoom(parseInt(params["id"]));
-        else
-          this.chatRoom = new ChatRoom();
-      });
+    ChatComponent._chatRoom$.subscribe(next => {
+      this.chatRoom = next;
     });
     console.log(JSON.stringify(this.chatRoom));
 
   }
-
+  send(message: HTMLTextAreaElement) {
+    console.log(message.value);
+    event.preventDefault();
+    ChatComponent.ws.send(JSON.stringify(new Message(message.value, "admin", true, true, this.chatRoom.messages[0].chatRoomId))).subscribe(
+      (msg) => {
+        console.log("next", msg.data);
+        message.value = "";
+      },
+      (msg) => {
+        console.log("error", msg);
+      },
+      () => {
+        console.log("complete");
+        message.value = "";
+      }
+    );
+  }
   ngOnInit() {
   }
 

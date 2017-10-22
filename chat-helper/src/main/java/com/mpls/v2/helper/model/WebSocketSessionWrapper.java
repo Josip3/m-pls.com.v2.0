@@ -9,6 +9,16 @@ public class WebSocketSessionWrapper {
 
     private String name;
     private WebSocketSession webSocketSession;
+    private Boolean online;
+
+    public Boolean getOnline() {
+        return online;
+    }
+
+    public WebSocketSessionWrapper setOnline(Boolean online) {
+        this.online = online;
+        return this;
+    }
 
     public String getName() {
         return name;

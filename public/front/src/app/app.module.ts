@@ -35,9 +35,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'cabinet', component: CabinetComponent, children:[
     {path: 'call-center',component:CallCenterComponent,children:[
-      {path: 'chat', component:ChatComponent,children:[
-        {path:'chat-room/:id',component:ChatRoomComponent}
-      ]},
+      {path: 'chat', component:ChatComponent}
     ]},
   ]},
 ];
