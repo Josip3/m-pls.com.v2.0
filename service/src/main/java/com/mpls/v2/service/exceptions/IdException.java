@@ -1,10 +1,11 @@
 package com.mpls.v2.service.exceptions;
 
-public class SaveException extends RuntimeException{
-    private static String prefix = "SaveException:[";
+public class IdException extends RuntimeException{
+
+    private static String prefix = "ExceptionWithId:[";
     private String message;
 
-    public SaveException(String message){
+    public IdException(String message){
         this.message = prefix+message+"]";
     }
 
