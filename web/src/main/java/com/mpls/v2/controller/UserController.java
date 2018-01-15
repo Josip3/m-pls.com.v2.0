@@ -1,5 +1,6 @@
 package com.mpls.v2.controller;
 
+import com.mpls.v2.dto.GroupShortDTO;
 import com.mpls.v2.dto.UserFullDTO;
 import com.mpls.v2.model.User;
 import com.mpls.v2.service.UserService;
@@ -9,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mpls.v2.dto.utils.builder.Builder.map;
 
@@ -39,9 +42,10 @@ public class UserController {
         return new ResponseEntity<>(map(userService.delete(id),UserFullDTO.class),HttpStatus.OK);
     }
 
-    @GetMapping("/get-all")
-    private ResponseEntity<UserFullDTO>findAll(){
-        return new ResponseEntity<>(map(userService.findAll(),UserFullDTO.class),HttpStatus.OK);
+    @GetMapping("/find-all")
+    private ResponseEntity<List<UserFullDTO>> findAll(){
+        return new ResponseEntity<>(userService.findAll().stream()
+                .map(user -> map(user,UserFullDTO.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-by-email")
