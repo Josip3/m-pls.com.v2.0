@@ -6,9 +6,11 @@ import com.mpls.v2.service.CallbackService;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CallbackServiceImpl implements CallbackService{
 
     @Autowired

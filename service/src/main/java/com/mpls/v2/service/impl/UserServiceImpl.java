@@ -7,9 +7,11 @@ import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
