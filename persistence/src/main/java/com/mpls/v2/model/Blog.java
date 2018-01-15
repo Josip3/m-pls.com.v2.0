@@ -1,5 +1,10 @@
 package com.mpls.v2.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mpls.v2.utils.deserialization.DateDeserializer;
+import com.mpls.v2.utils.serializer.DateSerializer;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -68,10 +73,12 @@ public class Blog {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public LocalDateTime getDate() {
         return date;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public Blog setDate(LocalDateTime date) {
         this.date = date;
         return this;
