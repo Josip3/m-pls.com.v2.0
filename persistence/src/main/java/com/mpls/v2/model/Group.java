@@ -1,28 +1,38 @@
 package com.mpls.v2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
-public class Technologies {
+public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String description;
-
     private String image;
+
+    @OneToMany(mappedBy = "group")
+    private List<User> users;
+
+    public Group() {
+    }
+
+    public Group(String name, String description, String image, List<User> users) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.users = users;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Technologies setId(Long id) {
+    public Group setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,7 +41,7 @@ public class Technologies {
         return name;
     }
 
-    public Technologies setName(String name) {
+    public Group setName(String name) {
         this.name = name;
         return this;
     }
@@ -40,7 +50,7 @@ public class Technologies {
         return description;
     }
 
-    public Technologies setDescription(String description) {
+    public Group setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -49,18 +59,28 @@ public class Technologies {
         return image;
     }
 
-    public Technologies setImage(String image) {
+    public Group setImage(String image) {
         this.image = image;
+        return this;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public Group setUsers(List<User> users) {
+        this.users = users;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Technologies{" +
+        return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
+                ", users=" + users.stream().map(User::getUsername).collect(toList()) +
                 '}';
     }
 }

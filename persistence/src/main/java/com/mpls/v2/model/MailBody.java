@@ -6,23 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Technologies {
+public class MailBody {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+    private String path;
 
-    private String description;
-
-    private String image;
+    public MailBody() {
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Technologies setId(Long id) {
+    public MailBody setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,36 +30,25 @@ public class Technologies {
         return name;
     }
 
-    public Technologies setName(String name) {
+    public MailBody setName(String name) {
         this.name = name;
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPath() {
+        return path;
     }
 
-    public Technologies setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public Technologies setImage(String image) {
-        this.image = image;
+    public MailBody setPath(String path) {
+        this.path = path;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Technologies{" +
+        return "MailBody{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
 }

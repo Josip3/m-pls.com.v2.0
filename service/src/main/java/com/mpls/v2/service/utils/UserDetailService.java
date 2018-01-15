@@ -1,6 +1,5 @@
 package com.mpls.v2.service.utils;
 
-import com.mpls.v2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,38 +1,32 @@
-package com.mpls.v2.model;
+package com.mpls.v2.dto;
+
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mpls.v2.utils.deserialization.DateDeserializer;
 import com.mpls.v2.utils.serializer.DateSerializer;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-public class Blog {
+public class BlogDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
-    private String description;
+    protected String description;
 
-    private String header;
+    protected String header;
 
-    private String mainText;
+    protected String mainText;
 
-    private String image;
+    protected String image;
 
-    private LocalDateTime date;
-
-    @ManyToOne
-    private Industries industries;
+    protected LocalDateTime date;
 
     public Long getId() {
         return id;
     }
 
-    public Blog setId(Long id) {
+    public BlogDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -41,7 +35,7 @@ public class Blog {
         return description;
     }
 
-    public Blog setDescription(String description) {
+    public BlogDto setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -50,7 +44,7 @@ public class Blog {
         return header;
     }
 
-    public Blog setHeader(String header) {
+    public BlogDto setHeader(String header) {
         this.header = header;
         return this;
     }
@@ -59,7 +53,7 @@ public class Blog {
         return mainText;
     }
 
-    public Blog setMainText(String mainText) {
+    public BlogDto setMainText(String mainText) {
         this.mainText = mainText;
         return this;
     }
@@ -68,7 +62,7 @@ public class Blog {
         return image;
     }
 
-    public Blog setImage(String image) {
+    public BlogDto setImage(String image) {
         this.image = image;
         return this;
     }
@@ -79,30 +73,20 @@ public class Blog {
     }
 
     @JsonDeserialize(using = DateDeserializer.class)
-    public Blog setDate(LocalDateTime date) {
+    public BlogDto setDate(LocalDateTime date) {
         this.date = date;
-        return this;
-    }
-
-    public Industries getIndustries() {
-        return industries;
-    }
-
-    public Blog setIndustries(Industries industries) {
-        this.industries = industries;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Blog{" +
+        return "BlogDto{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", header='" + header + '\'' +
                 ", mainText='" + mainText + '\'' +
                 ", image='" + image + '\'' +
                 ", date=" + date +
-                ", industries=" + industries.getName() +
                 '}';
     }
 }

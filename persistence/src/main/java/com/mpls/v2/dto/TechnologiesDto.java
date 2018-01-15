@@ -1,15 +1,7 @@
-package com.mpls.v2.model;
+package com.mpls.v2.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class TechnologiesDto {
 
-@Entity
-public class Technologies {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -22,7 +14,7 @@ public class Technologies {
         return id;
     }
 
-    public Technologies setId(Long id) {
+    public TechnologiesDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,7 +23,7 @@ public class Technologies {
         return name;
     }
 
-    public Technologies setName(String name) {
+    public TechnologiesDto setName(String name) {
         this.name = name;
         return this;
     }
@@ -40,7 +32,7 @@ public class Technologies {
         return description;
     }
 
-    public Technologies setDescription(String description) {
+    public TechnologiesDto setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -49,14 +41,14 @@ public class Technologies {
         return image;
     }
 
-    public Technologies setImage(String image) {
+    public TechnologiesDto setImage(String image) {
         this.image = image;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Technologies{" +
+        return "TechnologiesDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

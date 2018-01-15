@@ -6,23 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Technologies {
+public class Callback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+    private String email;
+    private String info;
 
-    private String description;
-
-    private String image;
+    public Callback() {
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Technologies setId(Long id) {
+    public Callback setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,36 +32,36 @@ public class Technologies {
         return name;
     }
 
-    public Technologies setName(String name) {
+    public Callback setName(String name) {
         this.name = name;
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEmail() {
+        return email;
     }
 
-    public Technologies setDescription(String description) {
-        this.description = description;
+    public Callback setEmail(String email) {
+        this.email = email;
         return this;
     }
 
-    public String getImage() {
-        return image;
+    public String getInfo() {
+        return info;
     }
 
-    public Technologies setImage(String image) {
-        this.image = image;
+    public Callback setInfo(String info) {
+        this.info = info;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Technologies{" +
+        return "Callback{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
+                ", email='" + email + '\'' +
+                ", info='" + info + '\'' +
                 '}';
     }
 }
