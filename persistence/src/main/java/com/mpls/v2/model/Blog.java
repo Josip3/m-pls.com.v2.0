@@ -25,7 +25,7 @@ public class Blog {
 
     private LocalDateTime date;
 
-    @OneToMany
+    @ManyToOne
     private Industries industries;
 
     public Long getId() {
