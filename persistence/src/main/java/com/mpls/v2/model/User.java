@@ -1,6 +1,12 @@
 package com.mpls.v2.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mpls.v2.enums.Roles;
+import com.mpls.v2.utils.deserialization.DateDeserializer;
+import com.mpls.v2.utils.deserialization.RoleDeserializer;
+import com.mpls.v2.utils.serializer.DateSerializer;
+import com.mpls.v2.utils.serializer.RolesSerializer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -157,10 +163,12 @@ public class User implements UserDetails {
         return this;
     }
 
+    @JsonSerialize(using = RolesSerializer.class)
     public Roles getRole() {
         return role;
     }
 
+    @JsonDeserialize(using = RoleDeserializer.class)
     public User setRole(Roles role) {
         this.role = role;
         return this;
@@ -202,10 +210,12 @@ public class User implements UserDetails {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public User setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
         return this;
