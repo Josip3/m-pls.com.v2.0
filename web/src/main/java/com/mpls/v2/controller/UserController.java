@@ -39,12 +39,12 @@ public class UserController {
         return new ResponseEntity<>(map(userService.delete(id),UserFullDTO.class),HttpStatus.OK);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     private ResponseEntity<UserFullDTO>findAll(){
         return new ResponseEntity<>(map(userService.findAll(),UserFullDTO.class),HttpStatus.OK);
     }
 
-    @GetMapping("/findByEmail")
+    @GetMapping("/find-by-email")
     private ResponseEntity<UserFullDTO> findByEmail(@RequestParam String name){
         return new ResponseEntity<>(map(userService.findByEmail(name),UserFullDTO.class),HttpStatus.OK);
     }
