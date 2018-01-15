@@ -43,9 +43,9 @@ public class GroupController {
         return new ResponseEntity<>(map(groupService.delete(id),GroupFullDTO.class),HttpStatus.OK);
     }
 
-    @GetMapping("find-by-name")
+    @GetMapping("/find-by-name")
     private ResponseEntity<GroupFullDTO> findByName(@RequestParam String name){
-        return new ResponseEntity<GroupFullDTO>(map(groupService.findByName(name),GroupFullDTO.class),HttpStatus.OK);
+        return new ResponseEntity<>(map(groupService.findByName(name),GroupFullDTO.class),HttpStatus.OK);
     }
 
 
