@@ -2,6 +2,7 @@ package com.mpls.v2.controller;
 
 import com.mpls.v2.dto.GroupShortDTO;
 import com.mpls.v2.dto.UserFullDTO;
+import com.mpls.v2.dto.UserShortDTO;
 import com.mpls.v2.model.User;
 import com.mpls.v2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,9 @@ public class UserController {
     }
 
     @GetMapping("/find-all")
-    private ResponseEntity<List<UserFullDTO>> findAll(){
+    private ResponseEntity<List<UserShortDTO>> findAll(){
         return new ResponseEntity<>(userService.findAll().stream()
-                .map(user -> map(user,UserFullDTO.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(user -> map(user,UserShortDTO.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-by-email")
