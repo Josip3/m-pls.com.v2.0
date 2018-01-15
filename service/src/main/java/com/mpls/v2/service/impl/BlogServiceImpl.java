@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.repository.BlogRepository;
 import com.mpls.v2.service.BlogService;
+import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,7 +35,7 @@ public class BlogServiceImpl implements BlogService {
         if (id != null || id >= 0) {
             return blogRepository.findOne(id);
         } else {
-            throw new SaveException("id must be not null");
+            throw new IdException("id must be not null");
         }
     }
 
@@ -44,7 +45,7 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.delete(blogRepository.findOne(id));
             return true;
         } else {
-            throw new SaveException("id must be not null");
+            throw new IdException("id must be not null");
         }
     }
 }

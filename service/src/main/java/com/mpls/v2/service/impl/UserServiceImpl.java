@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.User;
 import com.mpls.v2.repository.UserRepository;
 import com.mpls.v2.service.UserService;
+import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
         if (id != null || id >= 0) {
             return userRepository.findOne(id);
         } else {
-            throw new SaveException("id must be not null");
+            throw new IdException("id must be not null");
         }
     }
 
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
             userRepository.delete(userRepository.findOne(id));
             return true;
         } else {
-            throw new SaveException("id must be not null");
+            throw new IdException("id must be not null");
         }
     }
 
