@@ -5,7 +5,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Table
+@Entity
 public class Industries {
 
     @Id

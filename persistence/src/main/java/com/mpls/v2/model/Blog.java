@@ -10,7 +10,7 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String shortDescr;
+    private String description;
 
     private String header;
 
@@ -32,12 +32,12 @@ public class Blog {
         return this;
     }
 
-    public String getShortDescr() {
-        return shortDescr;
+    public String getDescription() {
+        return description;
     }
 
-    public Blog setShortDescr(String shortDescr) {
-        this.shortDescr = shortDescr;
+    public Blog setDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -90,7 +90,7 @@ public class Blog {
     public String toString() {
         return "Blog{" +
                 "id=" + id +
-                ", shortDescr='" + shortDescr + '\'' +
+                ", description='" + description + '\'' +
                 ", header='" + header + '\'' +
                 ", mainText='" + mainText + '\'' +
                 ", image='" + image + '\'' +
