@@ -44,8 +44,12 @@ public class GroupServiceImpl implements GroupService{
     @Override
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
-            groupRepository.delete(groupRepository.findOne(id));
-            return true;
+            try {
+                groupRepository.delete(groupRepository.findOne(id));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
             throw new IdException("id must be not null");
         }

@@ -4,8 +4,10 @@ import com.mpls.v2.model.Industries;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IndustriesRepository extends JpaRepository<Industries,Long> {
 
-    Industries findByName(String name);
+   Industries findByName(String name);
 }
