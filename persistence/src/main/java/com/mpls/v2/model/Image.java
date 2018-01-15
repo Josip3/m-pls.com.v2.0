@@ -22,24 +22,27 @@ public class Image {
         return id;
     }
 
-    public void setId(Long id) {
+    public Image setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getPath() {
         return path;
     }
 
-    public void setPath(String path) {
+    public Image setPath(String path) {
         this.path = path;
+        return this;
     }
 
     public String getOriginalName() {
         return originalName;
     }
 
-    public void setOriginalName(String originalName) {
+    public Image setOriginalName(String originalName) {
         this.originalName = originalName;
+        return this;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.mpls.v2.model;
 import javax.persistence.*;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Entity
 public class Group {
 
@@ -30,40 +32,45 @@ public class Group {
         return id;
     }
 
-    public void setId(Long id) {
+    public Group setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Group setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Group setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public Group setImage(String image) {
         this.image = image;
+        return this;
     }
 
     public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public Group setUsers(List<User> users) {
         this.users = users;
+        return this;
     }
 
     @Override
@@ -73,7 +80,7 @@ public class Group {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", users=" + users +
+                ", users=" + users.stream().map(User::getUsername).collect(toList()) +
                 '}';
     }
 }

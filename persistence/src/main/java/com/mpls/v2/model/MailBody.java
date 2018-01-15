@@ -11,8 +11,8 @@ public class MailBody {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+    private String path;
 
     public MailBody() {
     }
@@ -21,16 +21,27 @@ public class MailBody {
         return id;
     }
 
-    public void setId(Long id) {
+    public MailBody setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public MailBody setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public MailBody setPath(String path) {
+        this.path = path;
+        return this;
     }
 
     @Override

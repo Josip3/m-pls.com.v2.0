@@ -6,12 +6,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,12 @@ public class User implements UserDetails{
     private String image;
     private String post;
     private String description;
+    private String phone;
+    private String address;
+    private String city;
+    private String email;
+    private String username;
+    private LocalDateTime registrationDate;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -52,97 +59,156 @@ public class User implements UserDetails{
         return null;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
+    }
+
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public User setImage(String image) {
         this.image = image;
+        return this;
     }
 
     public String getPost() {
         return post;
     }
 
-    public void setPost(String post) {
+    public User setPost(String post) {
         this.post = post;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public User setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Group getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public User setGroup(Group group) {
         this.group = group;
+        return this;
     }
 
     public Roles getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public User setRole(Roles role) {
         this.role = role;
+        return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public User setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public User setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public User setCity(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public User setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
+        return this;
     }
 
     @Override
@@ -154,8 +220,14 @@ public class User implements UserDetails{
                 ", image='" + image + '\'' +
                 ", post='" + post + '\'' +
                 ", description='" + description + '\'' +
-                ", group=" + group +
-                ", role=" + role +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", group=" + group.getName() +
+                ", role=" + role.name().toUpperCase() +
                 '}';
     }
 }

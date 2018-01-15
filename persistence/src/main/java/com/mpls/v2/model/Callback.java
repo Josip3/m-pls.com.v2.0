@@ -23,32 +23,36 @@ public class Callback {
         return id;
     }
 
-    public void setId(Long id) {
+    public Callback setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Callback setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Callback setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
+    public Callback setInfo(String info) {
         this.info = info;
+        return this;
     }
 
     @Override
