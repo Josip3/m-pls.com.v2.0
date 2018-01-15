@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.Group;
 import com.mpls.v2.repository.GroupRepository;
 import com.mpls.v2.service.GroupService;
+import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class GroupServiceImpl implements GroupService{
         if (name != null) {
             return groupRepository.findByName(name);
         } else {
-            throw new SaveException("name must be not null");
+            throw new FindException("name must be not null");
         }
     }
 }
