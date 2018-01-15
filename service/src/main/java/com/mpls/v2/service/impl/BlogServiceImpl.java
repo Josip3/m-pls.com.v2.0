@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.repository.BlogRepository;
 import com.mpls.v2.service.BlogService;
+import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,25 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.delete(blogRepository.findOne(id));
             return true;
         } else {
+            throw new IdException("id must be not null");
+        }
+    }
+
+    @Override
+    public Blog findByHeader(String header) {
+        if (header != null) {
+            return blogRepository.findByHeader(header);
+        } else {
+            throw new FindException("find for your header give any value");
+        }
+    }
+
+    @Override
+    public List<Blog> findAllByIndustries_Id(Long id) {
+
+        if (id != null) {
+            return blogRepository.findAllByIndustries_Id(id);
+        }else {
             throw new IdException("id must be not null");
         }
     }

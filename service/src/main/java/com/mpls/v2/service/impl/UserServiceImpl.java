@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.User;
 import com.mpls.v2.repository.UserRepository;
 import com.mpls.v2.service.UserService;
+import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class UserServiceImpl implements UserService {
         if (firstName != null) {
             return userRepository.findByFirstName(firstName);
         } else {
-            throw new SaveException("firstName must be not null");
+            throw new FindException("firstName must be not null");
         }
     }
 
@@ -70,7 +71,7 @@ public class UserServiceImpl implements UserService {
         if (lastName != null) {
             return userRepository.findByLastName(lastName);
         } else {
-            throw new SaveException("lastName must be not null");
+            throw new FindException("lastName must be not null");
         }
     }
 
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserService {
         if (username != null) {
             return userRepository.findByUsername(username);
         } else {
-            throw new SaveException("userName must be not null");
+            throw new FindException("userName must be not null");
         }
     }
 
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService {
         if (email != null) {
             return userRepository.findByEmail(email);
         } else {
-            throw new SaveException("email must be not null");
+            throw new FindException("email must be not null");
         }
     }
 }

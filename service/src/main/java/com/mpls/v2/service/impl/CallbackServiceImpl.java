@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.Callback;
 import com.mpls.v2.repository.CallbackRepository;
 import com.mpls.v2.service.CallbackService;
+import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class CallbackServiceImpl implements CallbackService{
         if (name != null) {
             return callbackRepository.findByName(name);
         } else {
-            throw new SaveException("name must be not null");
+            throw new FindException("name must be not null");
         }
     }
 
@@ -64,7 +65,7 @@ public class CallbackServiceImpl implements CallbackService{
         if (email != null) {
             return callbackRepository.findByEmail(email);
         } else {
-            throw new SaveException("email must be not null");
+            throw new FindException("email must be not null");
         }
     }
 }
