@@ -18,6 +18,7 @@ public class User implements UserDetails{
     private Long id;
     private String firstName;
     private String lastName;
+    private String password;
     private String image;
     private String post;
     private String description;
@@ -49,6 +50,10 @@ public class User implements UserDetails{
     @Override
     public String getPassword() {
         return null;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
