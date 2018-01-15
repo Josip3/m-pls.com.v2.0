@@ -13,11 +13,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  menu(ul: HTMLUListElement) {
+  menu(ul: HTMLUListElement, a: HTMLAnchorElement) {
     event.preventDefault();
+
     if (ul.style.display == "none") {
+      a.style.color="black";
       ul.style.display = "block";
     } else {
+        a.style.color="white";
       ul.style.display = "none";
     }
   }

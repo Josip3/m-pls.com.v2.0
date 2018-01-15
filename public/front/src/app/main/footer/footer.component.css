@@ -2,5 +2,45 @@ footer {
   width: 100vw;
   height: auto;
   min-height: 10vw;
-  background: #171b65;
+  background: black;
+
+  display: flex;
+    flex-direction: column;
+  align-items: center;
+  padding-top: 3vh;
+}
+.top
+{
+
+  width: 60vw;
+  display: flex;
+  justify-content: space-around;
+    margin-bottom: 3vh;
+}
+.top a {
+    color: grey !important;
+    text-decoration: none;
+}
+.bottom{
+    color: #6f6d6d;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.icons{
+    margin-top: 1vh;
+    padding-top: 0.5vh!important;
+    padding: 4vh 0;
+    justify-content: center;
+    display: flex;
+}
+img:nth-child(3){
+    margin-right: 0;
+}
+img{
+    height: 5vh;
+    width: 3vw;
+    margin-right: 1vw;
 }

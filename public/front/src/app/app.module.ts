@@ -7,39 +7,22 @@ import {MainComponent} from './main/main.component';
 import {HeaderComponent} from './main/header/header.component';
 import {FooterComponent} from './main/footer/footer.component';
 import {HomeComponent} from './main/home/home.component';
-import {GalleryContainerComponent} from './main/home/gallery-container/gallery-container.component';
 import {ChatHelperComponent} from './sourse/chat-helper/chat-helper.component';
-import {LoginComponent} from "./login/login.component";
 import {Http, HttpModule, RequestOptions, XHRBackend} from "@angular/http";
 import {HttpClient} from "../environments/service/http-client";
 import {CookieService} from "angular2-cookie/core";
-import {NewsComponent} from './main/news/news.component';
 import {AgmCoreModule} from "@agm/core";
 import {AgmSnazzyInfoWindowModule} from "@agm/snazzy-info-window";
 import { CabinetComponent } from './cabinet/cabinet.component';
 import { CallCenterComponent } from './cabinet/call-center/call-center.component';
 import { ChatComponent } from './cabinet/call-center/chat/chat.component';
 import { ChatRoomComponent } from './cabinet/call-center/chat/chat-room/chat-room.component';
-
-const routes: Routes = [
-  {
-    path: '', component: MainComponent, children: [
-    {
-      path: '', component: HomeComponent,
-
-    },
-    {path: 'news', component: NewsComponent}
-  ]
-  },
-  // {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'cabinet', component: CabinetComponent, children:[
-    {path: 'call-center',component:CallCenterComponent,children:[
-      {path: 'chat', component:ChatComponent}
-    ]},
-  ]},
+import { mainRoutes } from "./app.routes";
+import { AboutUsComponent } from './main/about-us/about-us.component';
+import { CardComponent } from './main/home/card/card.component';
+const _routes:Routes=[
+    ...mainRoutes
 ];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,19 +30,18 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    GalleryContainerComponent,
     ChatHelperComponent,
-    LoginComponent,
-    NewsComponent,
     CabinetComponent,
     CallCenterComponent,
     ChatComponent,
     ChatRoomComponent,
+    AboutUsComponent,
+    CardComponent,
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(_routes, {useHash: true}),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDio2qZDpD9ifaAlAqsk-1Gr8zi0fblqY8'
     }),

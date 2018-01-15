@@ -1,94 +1,49 @@
 <div class="container">
-  <ul class="menu">
-    <li>
-      <a href="#" (click)="menu(ilHome1)">home</a>
-      <ul #ilHome1 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" (click)="menu(ilHome2)">home</a>
-      <ul #ilHome2 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" (click)="menu(ilHome3)">home</a>
-      <ul #ilHome3 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" (click)="menu(ilHome4)">home</a>
-      <ul #ilHome4 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" (click)="menu(ilHome5)">home</a>
-      <ul #ilHome5 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#" (click)="menu(ilHome6)">home</a>
-      <ul #ilHome6 style="display: none;">
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-        <li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
+	<div class="img">
+		<img src="../../../assets/materials/header/M-plus_logo.png" alt="">
+	</div>
+	<ul class="menu">
+
+		<li (mouseenter)="menu(ilHome1,labelTxt1)" (mouseleave)="menu(ilHome1,labelTxt1)" class="element-of-li">
+			<a #labelTxt1 href="#" class="label" (click)="menu(ilHome1)">Home</a>
+			<ul class="pop-up" #ilHome1 style="display: none">
+				<li><a [routerLink]="['/about-us']" [routerLinkActive]="['active']"
+				       [routerLinkActiveOptions]="{exact: true}">About us</a>
+				</li>
+				<hr>
+				<li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
+				</li>
+				<hr>
+				<li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
+				</li>
+				<hr>
+				<li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
+				</li>
+				<hr>
+				<li><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">home</a>
+				</li>
+			</ul>
+
+		</li>
+		<li class="element-of-li" (mouseenter)="menu(ilHome2,labelTxt2 )" (mouseleave)="menu(ilHome2,labelTxt2)">
+			<a #labelTxt2 href="#" class="label" (click)="menu(ilHome2)">home</a>
+		</li>
+		<li class="element-of-li" (mouseenter)="menu(ilHome3,labelTxt3)" (mouseleave)="menu(ilHome3,labelTxt3)">
+			<a #labelTxt3 href="#" class="label" (click)="menu(ilHome3)">home</a>
+
+		</li>
+		<li class="element-of-li" (mouseenter)="menu(ilHome4,labelTxt4)" (mouseleave)="menu(ilHome4,labelTxt4)">
+			<a #labelTxt4 href="#" class="label" (click)="menu(ilHome4)">hoome</a>
+
+		</li>
+		<li class="element-of-li" (mouseenter)="menu(ilHome5,labelTxt5)" (mouseleave)="menu(ilHome5,labelTxt5)">
+			<a #labelTxt5 href="#" class="label" (click)="menu(ilHome5)">home</a>
+
+		</li>
+	</ul>
+	<div class="lang">
+		<a href="">УКР | </a>
+		<a href="">РУС | </a>
+		<a href="">ENG</a>
+	</div>
 </div>
