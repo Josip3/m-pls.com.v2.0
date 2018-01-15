@@ -8,29 +8,29 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private String image;
 
     @OneToMany(mappedBy = "group")
-    private List<Worker> workers;
+    private List<User> users;
 
     public Group() {
     }
 
-    public Group(String name, String description, String image, List<Worker> workers) {
+    public Group(String name, String description, String image, List<User> users) {
         this.name = name;
         this.description = description;
         this.image = image;
-        this.workers = workers;
+        this.users = users;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,12 +58,12 @@ public class Group {
         this.image = image;
     }
 
-    public List<Worker> getWorkers() {
-        return workers;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setWorkers(List<Worker> workers) {
-        this.workers = workers;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Group {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", workers=" + workers +
+                ", users=" + users +
                 '}';
     }
 }

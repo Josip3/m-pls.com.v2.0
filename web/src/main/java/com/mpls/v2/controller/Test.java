@@ -1,7 +1,6 @@
 package com.mpls.v2.controller;
 
 import com.google.api.services.drive.model.File;
-import com.mpls.v2.model.User;
 import com.mpls.v2.service.GoogleDriveService;
 import com.mpls.v2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.mpls.v2.service.impl;
 
-import com.mpls.v2.model.User;
 import com.mpls.v2.repository.UserRepository;
 import com.mpls.v2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
