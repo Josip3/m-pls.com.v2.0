@@ -2,22 +2,21 @@ package com.mpls.v2.dto;
 
 public class BlogFullDto extends BlogDto {
 
-    private IndustriesShortDto event;
+    private IndustriesShortDto industries;
 
-    public IndustriesShortDto getEvent() {
-        return event;
+    public IndustriesShortDto getIndustries() {
+        return industries;
     }
 
-    public BlogFullDto setEvent(IndustriesShortDto event) {
-        this.event = event;
+    public BlogFullDto setIndustries(IndustriesShortDto industries) {
+        this.industries = industries;
         return this;
     }
-
 
     @Override
     public String toString() {
         return "BlogFullDto{" +
-                "event=" + event +
+                "industries=" + industries +
                 ", id=" + id +
                 ", description='" + description + '\'' +
                 ", header='" + header + '\'' +

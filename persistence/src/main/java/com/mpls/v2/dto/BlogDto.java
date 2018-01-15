@@ -1,6 +1,11 @@
 package com.mpls.v2.dto;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mpls.v2.utils.deserialization.DateDeserializer;
+import com.mpls.v2.utils.serializer.DateSerializer;
+
 import java.time.LocalDateTime;
 
 public class BlogDto {
@@ -62,10 +67,12 @@ public class BlogDto {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public LocalDateTime getDate() {
         return date;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public BlogDto setDate(LocalDateTime date) {
         this.date = date;
         return this;
