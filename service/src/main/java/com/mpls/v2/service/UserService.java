@@ -9,17 +9,17 @@ import java.util.List;
  */
 public interface UserService {
 
-    User save(User user);
+    User save(User user);//post
 
-    List<User> findAll();
+    List<User> findAll();//get
 
-    User findOne(Long id);
+    User findOne(Long id);//get
 
-    Boolean delete(Long id);
+    Boolean delete(Long id);//delete
 
-    User findByFirstName(String firstName);
+    User findByFirstName(String firstName);//get----
 
-    User findByLastName(String lastName);
+    User findByLastName(String lastName);//---
 
     User findByUsername(String username);
 
