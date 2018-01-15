@@ -16,4 +16,13 @@ public interface UserService {
     User findOne(Long id);
 
     Boolean delete(Long id);
+
+    User findByFirstName(String firstName);
+
+    User findByLastName(String lastName);
+
+    User findByUsername(String username);
+
+    User findByEmail(String email);
+
 }
