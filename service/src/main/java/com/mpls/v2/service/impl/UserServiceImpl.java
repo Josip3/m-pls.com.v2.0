@@ -49,8 +49,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
-            userRepository.delete(userRepository.findOne(id));
-            return true;
+            try {
+                userRepository.delete(userRepository.findOne(id));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
             throw new IdException("id must be not null");
         }
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findByFirstName(String firstName) {
+    public List<User> findByFirstName(String firstName) {
         if (firstName != null) {
             return userRepository.findByFirstName(firstName);
         } else {
@@ -67,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByLastName(String lastName) {
+    public List<User> findByLastName(String lastName) {
         if (lastName != null) {
             return userRepository.findByLastName(lastName);
         } else {

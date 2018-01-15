@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class IndustriesServiceImpl implements IndustriesService{
+public class IndustriesServiceImpl implements IndustriesService {
 
     @Autowired
     IndustriesRepository industriesRepository;
 
     @Override
     public Industries save(Industries industries) {
-        if ( industries != null) {
+        if (industries != null) {
             return industriesRepository.save(industries);
-        }else{
+        } else {
             throw new SaveException("Industries must be not null");
         }
     }
@@ -43,8 +43,12 @@ public class IndustriesServiceImpl implements IndustriesService{
     @Override
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
-            industriesRepository.delete(industriesRepository.findOne(id));
-            return true;
+            try {
+                industriesRepository.delete(industriesRepository.findOne(id));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
             throw new IdException("id must be not null");
         }

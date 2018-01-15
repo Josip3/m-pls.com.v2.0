@@ -43,8 +43,12 @@ public class TechnologiesServiceImpl implements TechnologiesService{
     @Override
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
-            technologiesRepository.delete(technologiesRepository.findOne(id));
-            return true;
+            try {
+                technologiesRepository.delete(technologiesRepository.findOne(id));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
             throw new IdException("id must be not null");
         }
