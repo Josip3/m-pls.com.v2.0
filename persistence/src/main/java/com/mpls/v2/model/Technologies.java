@@ -10,7 +10,7 @@ public class Technologies {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -18,11 +18,11 @@ public class Technologies {
 
     private String image;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Technologies setId(long id) {
+    public Technologies setId(Long id) {
         this.id = id;
         return this;
     }

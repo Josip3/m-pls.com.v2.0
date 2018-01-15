@@ -8,7 +8,7 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String shortDescr;
 
@@ -23,11 +23,11 @@ public class Blog {
     @OneToMany
     private Industries industries;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Blog setId(long id) {
+    public Blog setId(Long id) {
         this.id = id;
         return this;
     }

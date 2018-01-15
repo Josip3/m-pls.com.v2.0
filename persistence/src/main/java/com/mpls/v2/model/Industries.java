@@ -10,7 +10,7 @@ public class Industries {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -21,11 +21,11 @@ public class Industries {
     @OneToMany(mappedBy = "industries")
     private List<Blog> blogsList;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Industries setId(long id) {
+    public Industries setId(Long id) {
         this.id = id;
         return this;
     }

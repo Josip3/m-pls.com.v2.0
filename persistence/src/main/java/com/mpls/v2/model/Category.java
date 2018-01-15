@@ -10,17 +10,17 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
     private String description;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Category setId(long id) {
+    public Category setId(Long id) {
         this.id = id;
         return this;
     }
