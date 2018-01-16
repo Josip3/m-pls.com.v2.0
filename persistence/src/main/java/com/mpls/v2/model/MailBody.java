@@ -11,10 +11,23 @@ public class MailBody {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String path;
 
+    private Boolean available;
+
     public MailBody() {
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public MailBody setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {

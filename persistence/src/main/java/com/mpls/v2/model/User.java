@@ -35,6 +35,7 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private LocalDateTime registrationDate;
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -53,11 +54,22 @@ public class User implements UserDetails {
         this.description = description;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         return authorities;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+
+    public User setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     @Override
@@ -82,22 +94,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return available;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return available;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return available;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return available;
     }
 
     public Long getId() {

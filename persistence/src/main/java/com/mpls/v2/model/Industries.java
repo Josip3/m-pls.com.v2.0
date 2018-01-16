@@ -18,8 +18,19 @@ public class Industries {
 
     private String image;
 
+    private Boolean available;
+
     @OneToMany(mappedBy = "industries")
     private List<Blog> blogsList;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Industries setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
 
     public Long getId() {
         return id;

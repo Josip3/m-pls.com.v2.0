@@ -13,9 +13,21 @@ public class Image {
     private Long id;
 
     private String path;
+
     private String originalName;
 
+    private Boolean available;
+
     public Image() {
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Image setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {
