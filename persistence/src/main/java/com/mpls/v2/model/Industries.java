@@ -19,7 +19,7 @@ public class Industries {
 
     private String image;
 
-    private Boolean available;
+    private Boolean available = false;
 
     @OneToMany(mappedBy = "industries")
     private List<Blog> blogsList;

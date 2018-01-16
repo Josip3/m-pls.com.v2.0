@@ -14,7 +14,7 @@ public class Technologies {
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 
-    private Boolean available;
+    private Boolean available = false;
 
     private String image;
 

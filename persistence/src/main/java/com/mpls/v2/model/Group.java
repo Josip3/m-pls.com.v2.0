@@ -20,7 +20,7 @@ public class Group {
 
     private String image;
 
-    private Boolean available;
+    private Boolean available = false;
 
 
     @OneToMany(mappedBy = "team")

@@ -16,7 +16,7 @@ public class Image {
 
     private String originalName;
 
-    private Boolean available;
+    private Boolean available = false;
 
     public Image() {
     }

@@ -27,7 +27,7 @@ public class Blog {
 
     private LocalDateTime date;
 
-    private Boolean available;
+    private Boolean available = false;
 
     @ManyToOne
     private Industries industries;

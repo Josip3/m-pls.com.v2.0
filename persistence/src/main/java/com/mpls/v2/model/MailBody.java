@@ -16,7 +16,7 @@ public class MailBody {
 
     private String path;
 
-    private Boolean available;
+    private Boolean available  = false;
 
     public MailBody() {
     }

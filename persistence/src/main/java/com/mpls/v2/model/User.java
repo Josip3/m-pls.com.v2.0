@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private LocalDateTime registrationDate;
-    private Boolean available;
+    private Boolean available = false;
     private String uuid;
     private Roles role;
     @ManyToOne

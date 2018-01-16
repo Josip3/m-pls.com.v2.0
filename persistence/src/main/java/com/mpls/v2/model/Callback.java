@@ -18,7 +18,7 @@ public class Callback {
 
     private String info;
 
-    private Boolean available;
+    private Boolean available = false;
 
     public Callback() {
     }
