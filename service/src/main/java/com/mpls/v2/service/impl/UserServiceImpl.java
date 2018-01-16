@@ -1,5 +1,6 @@
 package com.mpls.v2.service.impl;
 
+import com.mpls.v2.enums.Roles;
 import com.mpls.v2.model.User;
 import com.mpls.v2.repository.UserRepository;
 import com.mpls.v2.service.UserService;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,11 +26,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-
         if (user != null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return userRepository.save(user);
-        }else{
+            return userRepository.save(user
+                    .setPassword(passwordEncoder.encode(user.getPassword()))
+                    .setUuid(UUID.randomUUID().toString())
+                    .setRole(Roles.DEFAULT)
+                    .setRegistrationDate(LocalDateTime.now())
+                    .setAvailable(true));
+        } else {
             throw new SaveException("User must be not null");
         }
     }
@@ -96,4 +102,6 @@ public class UserServiceImpl implements UserService {
             throw new FindException("email must be not null");
         }
     }
+
+
 }

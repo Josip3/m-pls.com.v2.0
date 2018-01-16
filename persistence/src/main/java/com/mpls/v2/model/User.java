@@ -36,11 +36,11 @@ public class User implements UserDetails {
     private String username;
     private LocalDateTime registrationDate;
     private Boolean available;
-
+    private String uuid;
+    private Roles role;
     @ManyToOne
     private Group team;
 
-    private Roles role;
 
     public User() {
     }
@@ -59,6 +59,24 @@ public class User implements UserDetails {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         return authorities;
+    }
+
+    public Group getTeam() {
+        return team;
+    }
+
+    public User setTeam(Group team) {
+        this.team = team;
+        return this;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public User setUuid(String uuid) {
+        this.uuid = uuid;
+        return this;
     }
 
     public Boolean getAvailable() {
