@@ -1,6 +1,7 @@
 package com.mpls.v2.service.impl;
 
 import com.mpls.v2.dto.BlogDto;
+import com.mpls.v2.dto.BlogFullDto;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.repository.BlogRepository;
 import com.mpls.v2.service.BlogService;
@@ -34,12 +35,36 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog update(BlogDto blogDto) {
-        try{
-            Blog blog = blogRepository.findOne(blogDto.getId());
-            return blogRepository.save(map(blogDto,Blog.class).setIndustries(blog.getIndustries()));
-        }catch (Exception e) {
-            throw new UpdateException("cant update");
+       Blog blog;
+        if (blogDto.getId() == null || blogDto.getId() < 1)
+            throw new UpdateException(" invalid id BlogService");
+        else if ((blog = blogRepository.findOne(blogDto.getId())) == null)
+            throw new UpdateException(" there are no hall with such id BlogService");
+        try {
+            return blogRepository.save(map(blogDto, Blog.class).setIndustries(blog.getIndustries()));
+        } catch (Exception e) {
+            throw new UpdateException("BlogService");
         }
+    }
+
+
+    @Override
+    public Blog update(Blog blog) {
+        if (blog.getId() == null || blog.getId() < 1)
+            throw new UpdateException(" invalid id blogService");
+        else if (blogRepository.findOne(blog.getId()) == null)
+            throw new UpdateException(" there are no blog with such id BlogService");
+        try {
+            return blogRepository.save(blog);
+        } catch (Exception e) {
+            throw new UpdateException("BlogService");
+        }
+    }
+
+
+    @Override
+    public Blog update(BlogFullDto blogFullDto) {
+        return update(map(blogFullDto,Blog.class));
     }
 
     @Override
