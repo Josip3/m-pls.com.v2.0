@@ -9,6 +9,8 @@ public interface ImageService {
 
     Image save(Image image);
 
+    Image update(Image image);
+
     Image upload(MultipartFile multipartFile,Long id);
 
     List<Image> findAll();
