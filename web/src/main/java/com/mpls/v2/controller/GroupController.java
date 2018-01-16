@@ -1,5 +1,9 @@
 package com.mpls.v2.controller;
 
+import com.mpls.v2.service.GroupService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.mpls.v2.dto.GroupFullDTO;
 import com.mpls.v2.dto.GroupShortDTO;
 import com.mpls.v2.model.Group;
@@ -13,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.mpls.v2.dto.utils.builder.Builder.map;
-
 
 @RestController
 @RequestMapping("/group")
@@ -47,6 +50,5 @@ public class GroupController {
     private ResponseEntity<GroupFullDTO> findByName(@RequestParam String name){
         return new ResponseEntity<>(map(groupService.findByName(name),GroupFullDTO.class),HttpStatus.OK);
     }
-
 
 }

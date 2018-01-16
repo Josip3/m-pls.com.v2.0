@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static com.mpls.v2.dto.utils.builder.Builder.map;
 
 @RestController
