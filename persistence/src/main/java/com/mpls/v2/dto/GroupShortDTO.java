@@ -10,6 +10,8 @@ public class GroupShortDTO {
 
     protected String image;
 
+    protected Boolean available;
+
     public GroupShortDTO() {
     }
 
@@ -17,6 +19,15 @@ public class GroupShortDTO {
         this.name = name;
         this.description = description;
         this.image = image;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public GroupShortDTO setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {

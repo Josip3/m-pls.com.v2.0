@@ -10,6 +10,8 @@ public class CallbackDTO {
 
     private String info;
 
+    private Boolean available;
+
     public CallbackDTO() {
     }
 
@@ -17,6 +19,15 @@ public class CallbackDTO {
         this.name = name;
         this.email = email;
         this.info = info;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public CallbackDTO setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {

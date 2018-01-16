@@ -8,7 +8,18 @@ public class TechnologiesDto {
 
     private String description;
 
+    private Boolean available;
+
     private String image;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public TechnologiesDto setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
 
     public Long getId() {
         return id;

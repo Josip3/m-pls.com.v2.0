@@ -20,6 +20,16 @@ public class UserShortDTO {
     protected String username;
     protected LocalDateTime registrationDate;
     protected Roles role;
+    protected Boolean available;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public UserShortDTO setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
 
     public Long getId() {
         return id;

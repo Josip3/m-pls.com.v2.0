@@ -14,6 +14,7 @@ public class Industries {
 
     private String name;
 
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 
     private String image;

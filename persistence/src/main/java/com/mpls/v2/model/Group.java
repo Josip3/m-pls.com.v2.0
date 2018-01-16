@@ -15,9 +15,13 @@ public class Group {
 
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String image;
+
+    private Boolean available;
+
 
     @OneToMany(mappedBy = "team")
     private List<User> users;

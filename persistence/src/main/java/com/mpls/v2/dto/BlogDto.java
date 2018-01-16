@@ -22,6 +22,17 @@ public class BlogDto {
 
     protected LocalDateTime date;
 
+    protected Boolean available;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public BlogDto setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }

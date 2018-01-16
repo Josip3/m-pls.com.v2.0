@@ -8,12 +8,23 @@ public class ImageDTO {
 
     private String originalName;
 
+    private Boolean available;
+
     public ImageDTO() {
     }
 
     public ImageDTO(String path, String originalName) {
         this.path = path;
         this.originalName = originalName;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public ImageDTO setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {
