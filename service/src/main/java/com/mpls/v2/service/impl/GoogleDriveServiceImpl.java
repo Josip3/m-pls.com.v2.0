@@ -28,13 +28,6 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GoogleDrive-specific service implementation.
- *
- * @author Kostyantyn Panchenko
- * @version 1.0
- * @since 24.12.2016
- */
 @Service
 public class GoogleDriveServiceImpl implements GoogleDriveService {
 
@@ -55,7 +48,7 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
     /**
      * Application name. Arbitrary as we use service account.
      */
-    private final String APPLICATION_NAME = "m-pls";
+    private final String APPLICATION_NAME = "global-plus-web-service";
     /**
      * Core GoogleDrive file fields we will work with.
      */
@@ -72,6 +65,7 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
      * Global instance of the JSON factory.
      */
     private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+
     @Autowired
     private FileBuilder fileBuilder;
     /**
@@ -88,17 +82,11 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
             Credential credential = GoogleCredential
-                    .fromStream(GoogleDriveServiceImpl.class.getResourceAsStream("/m-pls-5a4304358789.json"))
+                    .fromStream(GoogleDriveServiceImpl.class.getResourceAsStream("/files/global-plus-web-service-6ff6a3d06e31.json"))
                     .createScoped(SCOPES);
 
             driveService = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
                     .setApplicationName(APPLICATION_NAME).build();
-            LOGGER.info("-----------------------------------------");
-            LOGGER.info("-----------------------------------------");
-            LOGGER.info(credential.toString());
-            LOGGER.info("-----------------------------------------");
-            LOGGER.info("-----------------------------------------");
-
         } catch (GeneralSecurityException e) {
             LOGGER.info("-----------------------------------------");
             LOGGER.info("-----------------------------------------");
@@ -229,7 +217,7 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
     }
 
     @Override
-    public String upload(MultipartFile uploading, String folderId) {
+    public String upload(MultipartFile uploading) {
         String fileName = uploading.getOriginalFilename();
         String returnFileName = fileName;
 
@@ -289,7 +277,10 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
         try {
             driveService.files().get(id).executeMediaAndDownloadTo(response.getOutputStream());
         } catch (IOException e) {
+            e.printStackTrace();
             processGDE("Error occured while trying to download file with id = " + id);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

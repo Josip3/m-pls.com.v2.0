@@ -3,6 +3,7 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.model.User;
 import com.mpls.v2.repository.UserRepository;
 import com.mpls.v2.service.UserService;
+import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
-            userRepository.delete(userRepository.findOne(id));
-            return true;
+            try {
+                userRepository.delete(userRepository.findOne(id));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
             throw new IdException("id must be not null");
         }
@@ -57,20 +62,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findByFirstName(String firstName) {
+    public List<User> findByFirstName(String firstName) {
         if (firstName != null) {
             return userRepository.findByFirstName(firstName);
         } else {
-            throw new SaveException("firstName must be not null");
+            throw new FindException("firstName must be not null");
         }
     }
 
     @Override
-    public User findByLastName(String lastName) {
+    public List<User> findByLastName(String lastName) {
         if (lastName != null) {
             return userRepository.findByLastName(lastName);
         } else {
-            throw new SaveException("lastName must be not null");
+            throw new FindException("lastName must be not null");
         }
     }
 
@@ -79,7 +84,7 @@ public class UserServiceImpl implements UserService {
         if (username != null) {
             return userRepository.findByUsername(username);
         } else {
-            throw new SaveException("userName must be not null");
+            throw new FindException("userName must be not null");
         }
     }
 
@@ -88,7 +93,7 @@ public class UserServiceImpl implements UserService {
         if (email != null) {
             return userRepository.findByEmail(email);
         } else {
-            throw new SaveException("email must be not null");
+            throw new FindException("email must be not null");
         }
     }
 }

@@ -13,4 +13,8 @@ public interface BlogService {
     Blog findOne(Long id);
 
     Boolean delete(Long id);
+
+    Blog findByHeader(String header);
+
+    List<Blog> findAllByIndustries_Id(Long id);
 }

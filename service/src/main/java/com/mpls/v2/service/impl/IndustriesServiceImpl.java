@@ -1,8 +1,8 @@
 package com.mpls.v2.service.impl;
 
-import com.mpls.v2.model.Group;
-import com.mpls.v2.repository.GroupRepository;
-import com.mpls.v2.service.GroupService;
+import com.mpls.v2.model.Industries;
+import com.mpls.v2.repository.IndustriesRepository;
+import com.mpls.v2.service.IndustriesService;
 import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
@@ -12,30 +12,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GroupServiceImpl implements GroupService{
+public class IndustriesServiceImpl implements IndustriesService {
 
     @Autowired
-    GroupRepository groupRepository;
-
+    IndustriesRepository industriesRepository;
 
     @Override
-    public Group save(Group group) {
-        if (group != null) {
-            return groupRepository.save(group);
-        }else{
-            throw new SaveException("Group must be not null");
+    public Industries save(Industries industries) {
+        if (industries != null) {
+            return industriesRepository.save(industries);
+        } else {
+            throw new SaveException("Industries must be not null");
         }
     }
 
     @Override
-    public List<Group> findAll() {
-        return groupRepository.findAll();
+    public List<Industries> findAll() {
+        return industriesRepository.findAll();
     }
 
     @Override
-    public Group findOne(Long id) {
+    public Industries findOne(Long id) {
         if (id != null || id >= 0) {
-            return groupRepository.findOne(id);
+            return industriesRepository.findOne(id);
         } else {
             throw new IdException("id must be not null");
         }
@@ -45,7 +44,7 @@ public class GroupServiceImpl implements GroupService{
     public Boolean delete(Long id) {
         if (id != null || id >= 0) {
             try {
-                groupRepository.delete(groupRepository.findOne(id));
+                industriesRepository.delete(industriesRepository.findOne(id));
                 return true;
             } catch (Exception e) {
                 return false;
@@ -56,11 +55,11 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public Group findByName(String name) {
+    public Industries findByName(String name) {
         if (name != null) {
-            return groupRepository.findByName(name);
+            return industriesRepository.findByName(name);
         } else {
-            throw new FindException("name must be not null");
+            throw new FindException("Name must be not null");
         }
     }
 }
