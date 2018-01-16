@@ -44,7 +44,7 @@ public class BlogServiceImpl implements BlogService {
         if (blogDto.getId() == null || blogDto.getId() < 1)
             throw new UpdateException(" invalid id BlogService");
         else if ((blog = blogRepository.findOne(blogDto.getId())) == null)
-            throw new UpdateException(" there are no hall with such id BlogService");
+            throw new UpdateException(" there are no blog with such id BlogService");
         try {
             return blogRepository.save(map(blogDto, Blog.class).setIndustries(blog.getIndustries()));
         } catch (Exception e) {
