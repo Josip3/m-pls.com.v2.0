@@ -162,7 +162,7 @@ video {
     display: flex;
 }
 
-.form {
+form {
     background-image: url("./../../../assets/materials/home/form-wrapper.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -175,7 +175,7 @@ video {
 
 }
 
-.form::before {
+form::before {
     height: 100%;
     width: 60%;
     position: absolute;
@@ -192,14 +192,14 @@ video {
     width: 100%;
 }
 
-.form h1 {
+form h1 {
     margin-top: 4.3vh;
     color: white;
     font-family: sans-serif;
 
 }
 
-.callback .form .yellow-line {
+.callback form .yellow-line {
     width: 18vw;
     top: 4%;
     left: 13%;
