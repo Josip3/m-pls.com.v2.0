@@ -17,9 +17,9 @@ public interface UserService {
 
     Boolean delete(Long id);//delete
 
-    User findByFirstName(String firstName);//get----
+    List<User> findByFirstName(String firstName);
 
-    User findByLastName(String lastName);//---
+    List<User> findByLastName(String lastName);
 
     User findByUsername(String username);
 

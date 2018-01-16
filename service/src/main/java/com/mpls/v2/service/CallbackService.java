@@ -14,8 +14,8 @@ public interface CallbackService {
 
     Boolean delete(Long id);
 
-    Callback findByName(String name);
+    List<Callback> findByName(String name);
 
-    Callback findByEmail(String email);
+    List<Callback> findByEmail(String email);
 
 }

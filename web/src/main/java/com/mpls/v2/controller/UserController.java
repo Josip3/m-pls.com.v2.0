@@ -1,6 +1,8 @@
 package com.mpls.v2.controller;
 
+import com.mpls.v2.dto.GroupShortDTO;
 import com.mpls.v2.dto.UserFullDTO;
+import com.mpls.v2.dto.UserShortDTO;
 import com.mpls.v2.model.User;
 import com.mpls.v2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mpls.v2.dto.utils.builder.Builder.map;
 
@@ -39,12 +44,13 @@ public class UserController {
         return new ResponseEntity<>(map(userService.delete(id),UserFullDTO.class),HttpStatus.OK);
     }
 
-    @GetMapping("/getAll")
-    private ResponseEntity<UserFullDTO>findAll(){
-        return new ResponseEntity<>(map(userService.findAll(),UserFullDTO.class),HttpStatus.OK);
+    @GetMapping("/find-all")
+    private ResponseEntity<List<UserShortDTO>> findAll(){
+        return new ResponseEntity<>(userService.findAll().stream()
+                .map(user -> map(user,UserShortDTO.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/findByEmail")
+    @GetMapping("/find-by-email")
     private ResponseEntity<UserFullDTO> findByEmail(@RequestParam String name){
         return new ResponseEntity<>(map(userService.findByEmail(name),UserFullDTO.class),HttpStatus.OK);
     }
