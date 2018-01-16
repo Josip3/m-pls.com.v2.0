@@ -28,7 +28,7 @@ public class BlogController {
 
     @GetMapping("/find-all")
     private ResponseEntity<List<BlogShortDto>> findAll() {
-        return new ResponseEntity<List<BlogShortDto>>(blogService.findAll().stream().map(blog -> map(blog, BlogShortDto.class)).collect(toList()), HttpStatus.CREATED);
+        return new ResponseEntity<List<BlogShortDto>>(blogService.findAll().stream().map(blog -> map(blog, BlogShortDto.class)).collect(toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one/{id}")
@@ -39,4 +39,30 @@ public class BlogController {
         return new ResponseEntity<BlogShortDto>(map(blog, BlogFullDto.class), HttpStatus.OK);
     }
 
+    @PutMapping("/update")
+    private ResponseEntity<BlogFullDto> update(@RequestBody BlogFullDto blog){
+        return new ResponseEntity<BlogFullDto>(map(blogService.update(blog), BlogFullDto.class), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    private ResponseEntity<Boolean> delete(@PathVariable Long id){
+        Boolean isDeleted = blogService.delete(id);
+        return new ResponseEntity<Boolean>(isDeleted, isDeleted ? HttpStatus.OK : HttpStatus.CONFLICT);
+    }
+
+    @GetMapping("/find-by-header/{header}")
+    private ResponseEntity<BlogShortDto> findByHeader(@PathVariable String header){
+        Blog blog = blogService.findByHeader(header);
+        if(blog == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<BlogShortDto>(map(blog, BlogShortDto.class), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-by-industries-id/{id}")
+    private ResponseEntity<List<BlogShortDto>> findAllByIndustries_Id(@PathVariable Long id){
+        List<Blog> blogs = blogService.findAllByIndustries_Id(id);
+        if(blogs == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<BlogShortDto>>(blogs.stream().map(blog -> map(blog, BlogShortDto.class)).collect(toList()), HttpStatus.OK);
+    }
 }
