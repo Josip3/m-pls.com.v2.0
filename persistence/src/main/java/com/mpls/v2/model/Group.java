@@ -6,6 +6,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Entity
+@Table(name = "team")
 public class Group {
 
     @Id
@@ -18,9 +19,7 @@ public class Group {
 
     private String image;
 
-    private Boolean available;
-
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "team")
     private List<User> users;
 
     public Group() {

@@ -4,21 +4,21 @@ import com.mpls.v2.model.Group;
 
 public class UserFullDTO extends UserShortDTO {
 
-    Group group;
+    Group team;
 
-    public Group getGroup() {
-        return group;
+    public Group getTeam() {
+        return team;
     }
 
-    public UserFullDTO setGroup(Group group) {
-        this.group = group;
+    public UserFullDTO setTeam(Group team) {
+        this.team = team;
         return this;
     }
 
     @Override
     public String toString() {
         return "UserFullDTO{" +
-                "group=" + group +
+                "team=" + team.getName() +
                 ", id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

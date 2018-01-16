@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface UserService {
 
-    User save(User user);
+    User save(User user);//post
 
-    List<User> findAll();
+    List<User> findAll();//get
 
-    User findOne(Long id);
+    User findOne(Long id);//get
 
-    Boolean delete(Long id);
+    Boolean delete(Long id);//delete
 
     List<User> findByFirstName(String firstName);
 
