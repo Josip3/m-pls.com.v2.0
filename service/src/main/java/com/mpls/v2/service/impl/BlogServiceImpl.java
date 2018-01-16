@@ -1,6 +1,6 @@
 package com.mpls.v2.service.impl;
 
-import com.mpls.v2.dto.BlogDto;
+import com.mpls.v2.dto.BlogShortDto;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.repository.BlogRepository;
 import com.mpls.v2.service.BlogService;
@@ -33,10 +33,10 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog update(BlogDto blogDto) {
+    public Blog update(BlogShortDto blogShortDto) {
         try{
-            Blog blog = blogRepository.findOne(blogDto.getId());
-            return blogRepository.save(map(blogDto,Blog.class).setIndustries(blog.getIndustries()));
+            Blog blog = blogRepository.findOne(blogShortDto.getId());
+            return blogRepository.save(map(blogShortDto,Blog.class).setIndustries(blog.getIndustries()));
         }catch (Exception e) {
             throw new UpdateException("cant update");
         }

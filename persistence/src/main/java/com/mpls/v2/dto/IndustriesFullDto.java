@@ -4,13 +4,13 @@ import java.util.List;
 
 public class IndustriesFullDto extends IndustriesShortDto {
 
-    List<BlogDto> blogsList;
+    List<BlogShortDto> blogsList;
 
-    public List<BlogDto> getBlogsList() {
+    public List<BlogShortDto> getBlogsList() {
         return blogsList;
     }
 
-    public IndustriesFullDto setBlogsList(List<BlogDto> blogsList) {
+    public IndustriesFullDto setBlogsList(List<BlogShortDto> blogsList) {
         this.blogsList = blogsList;
         return this;
     }

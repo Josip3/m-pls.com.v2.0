@@ -1,6 +1,6 @@
 package com.mpls.v2.dto;
 
-public class BlogFullDto extends BlogDto {
+public class BlogFullDto extends BlogShortDto {
 
     private IndustriesShortDto industries;
 

@@ -4,13 +4,13 @@ import com.mpls.v2.model.Group;
 
 public class UserFullDTO extends UserShortDTO {
 
-    Group team;
+    GroupShortDTO team;
 
-    public Group getTeam() {
+    public GroupShortDTO getTeam() {
         return team;
     }
 
-    public UserFullDTO setTeam(Group team) {
+    public UserFullDTO setTeam(GroupShortDTO team) {
         this.team = team;
         return this;
     }
