@@ -1,9 +1,6 @@
 package com.mpls.v2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Technologies {
@@ -14,6 +11,7 @@ public class Technologies {
 
     private String name;
 
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 
     private Boolean available;

@@ -15,10 +15,12 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String header;
 
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String mainText;
 
     private String image;
