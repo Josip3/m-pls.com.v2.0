@@ -12,6 +12,7 @@
         <module>service</module>
         <module>web</module>
         <module>chat-helper</module>
+        <module>public</module>
     </modules>
     <name>mpls-new</name>
 

@@ -37,8 +37,7 @@ public class User implements UserDetails {
     private LocalDateTime registrationDate;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    private Group team;
 
     private Roles role;
 
@@ -62,7 +61,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     public User setPassword(String password) {
@@ -155,11 +154,11 @@ public class User implements UserDetails {
     }
 
     public Group getGroup() {
-        return group;
+        return team;
     }
 
-    public User setGroup(Group group) {
-        this.group = group;
+    public User setGroup(Group team) {
+        this.team = team;
         return this;
     }
 
@@ -236,7 +235,7 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", registrationDate=" + registrationDate +
-                ", group=" + group.getName() +
+                ", team=" + team.getName() +
                 ", role=" + role.name().toUpperCase() +
                 '}';
     }
