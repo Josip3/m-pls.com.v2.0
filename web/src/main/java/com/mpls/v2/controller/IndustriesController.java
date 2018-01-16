@@ -21,7 +21,7 @@ public class IndustriesController {
     @Autowired
     IndustriesService industriesService;
 
-    @PostMapping
+    @PostMapping("/save")
     private ResponseEntity<IndustriesFullDto> save(@RequestBody IndustriesFullDto industries){
         return new ResponseEntity<>(map(industriesService.save(map(industries, Industries.class)),IndustriesFullDto.class), HttpStatus.OK);
     }
