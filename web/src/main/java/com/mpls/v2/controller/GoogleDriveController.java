@@ -25,61 +25,44 @@ public class GoogleDriveController {
     private GoogleDriveService driveService;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public DriveFile getFile(@PathVariable String id) {
         return getDriveFileFrom(driveService.getFile(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "parent/{id}", method = RequestMethod.GET)
+    @GetMapping("/parent/{id}")
     public List<DriveFile> findByParentId(@PathVariable String id) {
         return getDriveFilesFrom(driveService.findByParentId(id));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "create/{parentId}", method = RequestMethod.POST)
+    @PostMapping("/create/{parentId}")
     public DriveFile createFolder(@PathVariable String parentId, @RequestBody String name) {
         return getDriveFileFrom(driveService.createFolder(name, parentId));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String delete(@PathVariable String id) {
-
         return driveService.delete(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    @PutMapping("update/{id}")
     public DriveFile update(@PathVariable String id, @RequestBody String name) {
         return getDriveFileFrom(driveService.update(id, name));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "upload/{id}", method = RequestMethod.POST)
-    public void upload(@PathVariable String id, @RequestParam("file") MultipartFile file) {
-        driveService.upload(file, id);
+    @PostMapping("/upload")
+    public void upload(@RequestParam("file") MultipartFile file) {
+        driveService.upload(file);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "download/{id}", method = RequestMethod.GET)
+    @GetMapping("download/{id}")
     public void download(@PathVariable String id, HttpServletResponse response) {
-//        System.err.println("---------------------------------");
-//        System.err.println("---------------------------------");
-//        System.err.println("---------------------------------");
-//        List<File> file = driveService.getAll();
-//        String tempId = "";
-//        for (File file1 : file) {
-//            System.err.println("bool 1 :|" + file1.getName() + "|" + id + "|= " + file1.getName().contains(id));
-//            if (file1.getName().contains(id)) {
-//                tempId = file1.getId();
-//            }
-//        }
-//
-//        System.err.println("---------------------------------");
-//        System.err.println("---------------------------------");
-//        System.err.println("---------------------------------");
-
         driveService.download(id, response);
     }
 
