@@ -1,5 +1,6 @@
 package com.mpls.v2.service;
 
+import com.mpls.v2.dto.BlogDto;
 import com.mpls.v2.model.Blog;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 public interface BlogService {
 
     Blog save(Blog blog);
+
+    Blog update(BlogDto blogDto);
 
     List<Blog> findAll();
 
