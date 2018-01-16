@@ -10,6 +10,17 @@ public class IndustriesShortDto {
 
     protected String image;
 
+    protected Boolean available;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public IndustriesShortDto setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
+
     public Long getId() {
         return id;
     }

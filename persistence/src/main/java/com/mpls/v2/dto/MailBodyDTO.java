@@ -8,12 +8,23 @@ public class MailBodyDTO {
 
     private String path;
 
+    private Boolean available;
+
     public MailBodyDTO() {
     }
 
     public MailBodyDTO(String name, String path) {
         this.name = name;
         this.path = path;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public MailBodyDTO setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {
