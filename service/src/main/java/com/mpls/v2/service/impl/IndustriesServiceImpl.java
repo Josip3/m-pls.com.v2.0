@@ -1,15 +1,20 @@
 package com.mpls.v2.service.impl;
 
+import com.mpls.v2.dto.IndustriesFullDto;
+import com.mpls.v2.dto.IndustriesShortDto;
 import com.mpls.v2.model.Industries;
 import com.mpls.v2.repository.IndustriesRepository;
 import com.mpls.v2.service.IndustriesService;
 import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
+import com.mpls.v2.service.exceptions.UpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.mpls.v2.dto.utils.builder.Builder.map;
 
 @Service
 public class IndustriesServiceImpl implements IndustriesService {
@@ -24,6 +29,38 @@ public class IndustriesServiceImpl implements IndustriesService {
         } else {
             throw new SaveException("Industries must be not null");
         }
+    }
+
+    @Override
+    public Industries update(Industries industries) {
+        if (industries.getId() == null || industries.getId() < 1)
+            throw new UpdateException(" invalid id IndustriesService");
+        else if (industriesRepository.findOne(industries.getId()) == null)
+            throw new UpdateException(" there are no industries with such id ");
+        try {
+            return industriesRepository.save(industries);
+        } catch (Exception e) {
+            throw new UpdateException("IndustriesService");
+        }
+    }
+
+    @Override
+    public Industries update(IndustriesShortDto industriesShortDto) {
+       Industries industries;
+        if (industriesShortDto.getId() == null || industriesShortDto.getId() < 1)
+            throw new UpdateException(" invalid id IndustriesService");
+        else if ((industries = industriesRepository.findOne(industriesShortDto.getId())) == null)
+            throw new UpdateException(" there are no industries with such id ");
+        try {
+            return industriesRepository.save(map(industriesShortDto,Industries.class).setBlogsList(industries.getBlogsList()));
+        } catch (Exception e) {
+            throw new UpdateException("BlogService");
+        }
+    }
+
+    @Override
+    public Industries update(IndustriesFullDto industriesFullDto) {
+        return update(map(industriesFullDto,Industries.class));
     }
 
     @Override
