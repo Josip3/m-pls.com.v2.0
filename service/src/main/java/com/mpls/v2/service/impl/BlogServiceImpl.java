@@ -3,8 +3,10 @@ package com.mpls.v2.service.impl;
 import com.mpls.v2.dto.BlogDto;
 import com.mpls.v2.dto.BlogFullDto;
 import com.mpls.v2.model.Blog;
+import com.mpls.v2.model.Industries;
 import com.mpls.v2.repository.BlogRepository;
 import com.mpls.v2.service.BlogService;
+import com.mpls.v2.service.IndustriesService;
 import com.mpls.v2.service.exceptions.FindException;
 import com.mpls.v2.service.exceptions.IdException;
 import com.mpls.v2.service.exceptions.SaveException;
@@ -22,6 +24,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     BlogRepository blogRepository;
+
+    @Autowired
+    IndustriesService industriesService;
 
     @Override
     public Blog save(Blog blog) {
@@ -64,7 +69,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog update(BlogFullDto blogFullDto) {
-        return update(map(blogFullDto,Blog.class));
+        Industries industries = industriesService.findOne(blogFullDto.getIndustries().getId());
+        return update(map(blogFullDto,Blog.class).setIndustries(industries));
     }
 
     @Override
