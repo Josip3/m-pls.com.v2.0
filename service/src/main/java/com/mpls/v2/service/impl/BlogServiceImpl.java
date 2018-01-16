@@ -70,7 +70,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog update(BlogFullDto blogFullDto) {
         Industries industries = industriesService.findOne(blogFullDto.getIndustries().getId());
-        return update(map(blogFullDto,Blog.class).setIndustries(industries));
+        if (industries != null) {
+            return update(map(blogFullDto,Blog.class).setIndustries(industries));
+        } else {
+            throw new UpdateException("Industries must be not null");
+        }
     }
 
     @Override
