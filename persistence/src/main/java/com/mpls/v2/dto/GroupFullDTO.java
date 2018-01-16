@@ -8,13 +8,13 @@ import static java.util.stream.Collectors.toList;
 
 public class GroupFullDTO extends GroupShortDTO {
 
-    List<User> users;
+    List<UserShortDTO> users;
 
-    public List<User> getUsers() {
+    public List<UserShortDTO> getUsers() {
         return users;
     }
 
-    public GroupFullDTO setUsers(List<User> users) {
+    public GroupFullDTO setUsers(List<UserShortDTO> users) {
         this.users = users;
         return this;
     }
@@ -22,7 +22,7 @@ public class GroupFullDTO extends GroupShortDTO {
     @Override
     public String toString() {
         return "GroupFullDTO{" +
-                "users=" + users.stream().map(User::getUsername).collect(toList()) +
+                "users=" + users.stream().map(UserShortDTO::getUsername).collect(toList()) +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

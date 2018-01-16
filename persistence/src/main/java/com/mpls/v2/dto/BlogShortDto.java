@@ -8,7 +8,7 @@ import com.mpls.v2.utils.serializer.DateSerializer;
 
 import java.time.LocalDateTime;
 
-public class BlogDto {
+public class BlogShortDto {
 
     protected Long id;
 
@@ -28,7 +28,7 @@ public class BlogDto {
         return available;
     }
 
-    public BlogDto setAvailable(Boolean available) {
+    public BlogShortDto setAvailable(Boolean available) {
         this.available = available;
         return this;
     }
@@ -37,7 +37,7 @@ public class BlogDto {
         return id;
     }
 
-    public BlogDto setId(Long id) {
+    public BlogShortDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -46,7 +46,7 @@ public class BlogDto {
         return description;
     }
 
-    public BlogDto setDescription(String description) {
+    public BlogShortDto setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -55,7 +55,7 @@ public class BlogDto {
         return header;
     }
 
-    public BlogDto setHeader(String header) {
+    public BlogShortDto setHeader(String header) {
         this.header = header;
         return this;
     }
@@ -64,7 +64,7 @@ public class BlogDto {
         return mainText;
     }
 
-    public BlogDto setMainText(String mainText) {
+    public BlogShortDto setMainText(String mainText) {
         this.mainText = mainText;
         return this;
     }
@@ -73,7 +73,7 @@ public class BlogDto {
         return image;
     }
 
-    public BlogDto setImage(String image) {
+    public BlogShortDto setImage(String image) {
         this.image = image;
         return this;
     }
@@ -84,14 +84,14 @@ public class BlogDto {
     }
 
     @JsonDeserialize(using = DateDeserializer.class)
-    public BlogDto setDate(LocalDateTime date) {
+    public BlogShortDto setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }
 
     @Override
     public String toString() {
-        return "BlogDto{" +
+        return "BlogShortDto{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", header='" + header + '\'' +

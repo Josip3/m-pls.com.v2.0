@@ -1,6 +1,6 @@
 package com.mpls.v2.service;
 
-import com.mpls.v2.dto.BlogDto;
+import com.mpls.v2.dto.BlogShortDto;
 import com.mpls.v2.dto.BlogFullDto;
 import com.mpls.v2.model.Blog;
 
@@ -10,7 +10,7 @@ public interface BlogService {
 
     Blog save(Blog blog);
 
-    Blog update(BlogDto blogDto);
+    Blog update(BlogShortDto blogShortDto);
 
     Blog update(Blog blog);
 

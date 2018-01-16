@@ -1,6 +1,6 @@
 package com.mpls.v2.service.impl;
 
-import com.mpls.v2.dto.BlogDto;
+import com.mpls.v2.dto.BlogShortDto;
 import com.mpls.v2.dto.BlogFullDto;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.model.Industries;
@@ -39,7 +39,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog update(BlogDto blogDto) {
+    public Blog update(BlogShortDto blogDto) {
        Blog blog;
         if (blogDto.getId() == null || blogDto.getId() < 1)
             throw new UpdateException(" invalid id BlogService");

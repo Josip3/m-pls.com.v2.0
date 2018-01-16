@@ -1,7 +1,7 @@
 package com.mpls.v2.controller;
 
-import com.mpls.v2.dto.BlogDto;
 import com.mpls.v2.dto.BlogFullDto;
+import com.mpls.v2.dto.BlogShortDto;
 import com.mpls.v2.model.Blog;
 import com.mpls.v2.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,17 @@ public class BlogController {
         return new ResponseEntity<BlogFullDto>(map(blogService.save(map(blog, Blog.class)), BlogFullDto.class), HttpStatus.CREATED);
     }
 
-    @GetMapping("/findAll")
-    private ResponseEntity<List<BlogDto>> findAll() {
-        return new ResponseEntity<List<BlogDto>>(blogService.findAll().stream().map(blog -> map(blog, BlogDto.class)).collect(toList()), HttpStatus.CREATED);
+    @GetMapping("/find-all")
+    private ResponseEntity<List<BlogShortDto>> findAll() {
+        return new ResponseEntity<List<BlogShortDto>>(blogService.findAll().stream().map(blog -> map(blog, BlogShortDto.class)).collect(toList()), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/find-one/{id}")
+    private ResponseEntity<BlogShortDto> findOne(@PathVariable Long id){
+        Blog blog = blogService.findOne(id);
+        if(blog == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<BlogShortDto>(map(blog, BlogFullDto.class), HttpStatus.OK);
     }
 
 }
