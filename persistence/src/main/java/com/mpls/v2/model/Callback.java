@@ -13,10 +13,23 @@ public class Callback {
     private Long id;
 
     private String name;
+
     private String email;
+
     private String info;
 
+    private Boolean available;
+
     public Callback() {
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Callback setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {

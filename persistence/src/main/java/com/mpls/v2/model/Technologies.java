@@ -16,7 +16,18 @@ public class Technologies {
 
     private String description;
 
+    private Boolean available;
+
     private String image;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Technologies setAvailable(Boolean available) {
+        this.available = available;
+        return this;
+    }
 
     public Long getId() {
         return id;

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mpls.v2.dto.GroupFullDTO;
 import com.mpls.v2.dto.GroupShortDTO;
 import com.mpls.v2.model.Group;
-import com.mpls.v2.service.GroupService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -12,8 +12,11 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String description;
+
     private String image;
 
     @OneToMany(mappedBy = "team")
@@ -27,6 +30,15 @@ public class Group {
         this.description = description;
         this.image = image;
         this.users = users;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Group setAvailable(Boolean available) {
+        this.available = available;
+        return this;
     }
 
     public Long getId() {

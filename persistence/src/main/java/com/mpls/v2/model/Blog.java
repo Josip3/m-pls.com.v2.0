@@ -25,6 +25,8 @@ public class Blog {
 
     private LocalDateTime date;
 
+    private Boolean available;
+
     @ManyToOne
     private Industries industries;
 
@@ -90,6 +92,15 @@ public class Blog {
 
     public Blog setIndustries(Industries industries) {
         this.industries = industries;
+        return this;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public Blog setAvailable(Boolean available) {
+        this.available = available;
         return this;
     }
 
